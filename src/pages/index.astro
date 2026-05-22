@@ -1,0 +1,76 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Portfolio" description="My personal portfolio">
+  <section class="hero">
+    <p class="hero-greeting">Hi, my name is</p>
+    <h1 class="hero-name">Your Name.</h1>
+    <h2 class="hero-tagline">I build things for the web.</h2>
+    <p class="hero-description">
+      A software engineer focused on crafting clean, efficient, and
+      user-centered digital experiences.
+    </p>
+    <a href="#works" class="hero-cta">View my work</a>
+  </section>
+</BaseLayout>
+
+<style>
+  .hero {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    max-width: 1200px;
+    margin-inline: auto;
+    padding: calc(var(--nav-height) + 2rem) 2rem 4rem;
+  }
+
+  .hero-greeting {
+    font-size: 1rem;
+    font-weight: 400;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    margin-bottom: 1.25rem;
+  }
+
+  .hero-name {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.1;
+    margin-bottom: 0.5rem;
+  }
+
+  .hero-tagline {
+    font-size: clamp(1.5rem, 4.5vw, 3rem);
+    font-weight: 500;
+    color: var(--text-secondary);
+    line-height: 1.2;
+    margin-bottom: 1.75rem;
+  }
+
+  .hero-description {
+    max-width: 500px;
+    font-size: 1rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    margin-bottom: 3rem;
+  }
+
+  .hero-cta {
+    display: inline-block;
+    padding: 0.85rem 2rem;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 0.85rem;
+    font-weight: 400;
+    letter-spacing: 0.1em;
+    border-radius: 2px;
+    transition: background 0.2s, color 0.2s;
+    width: fit-content;
+  }
+  .hero-cta:hover {
+    background: rgba(100, 255, 218, 0.08);
+  }
+</style>
