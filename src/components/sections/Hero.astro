@@ -30,7 +30,7 @@
   }
 
   .hero-greeting {
-    font-size: 1rem;
+    font-size: var(--fs-body-sm);   /* 10pt 本文（小さめ） */
     font-weight: 400;
     color: var(--accent);
     font-family: 'SF Mono', 'Fira Code', monospace;
@@ -39,7 +39,7 @@
   }
 
   .hero-name {
-    font-size: clamp(2.8rem, 8vw, 5.5rem);
+    font-size: var(--fs-title);     /* 32pt タイトル */
     font-weight: 700;
     color: var(--text-primary);
     line-height: 1.05;
@@ -48,7 +48,7 @@
   }
 
   .hero-tagline {
-    font-size: clamp(1.4rem, 4vw, 3rem);
+    font-size: var(--fs-h1);        /* 24pt 大見出し */
     font-weight: 500;
     color: var(--text-secondary);
     line-height: 1.25;
@@ -58,7 +58,7 @@
 
   .hero-description {
     max-width: 520px;
-    font-size: 1rem;
+    font-size: var(--fs-body);      /* 14pt 本文 */
     line-height: 1.8;
     color: var(--text-secondary);
     margin-bottom: 3rem;

@@ -133,23 +133,23 @@ const projects = [
   }
   .project-num {
     font-family: 'SF Mono', 'Fira Code', monospace;
-    font-size: 0.75rem;
+    font-size: var(--fs-body-sm);   /* 10pt 本文（小さめ） */
     color: var(--accent);
   }
   .project-category {
-    font-size: 0.72rem;
+    font-size: var(--fs-body-sm);   /* 10pt 本文（小さめ） */
     color: var(--text-secondary);
     letter-spacing: 0.05em;
   }
   .project-period {
-    font-size: 0.72rem;
+    font-size: var(--fs-body-sm);   /* 10pt 本文（小さめ） */
     font-family: 'SF Mono', 'Fira Code', monospace;
     color: var(--text-secondary);
     margin-left: auto;
   }
 
   .project-title {
-    font-size: 1.05rem;
+    font-size: var(--fs-h2);        /* 18pt 中見出し */
     font-weight: 600;
     color: var(--text-primary);
     line-height: 1.35;
@@ -158,7 +158,7 @@ const projects = [
   .project-card:hover .project-title { color: var(--accent); }
 
   .project-description {
-    font-size: 0.875rem;
+    font-size: var(--fs-body-md);   /* 12pt 本文（中サイズ） */
     line-height: 1.75;
     color: var(--text-secondary);
     flex: 1;
@@ -179,7 +179,7 @@ const projects = [
     gap: 0.4rem;
   }
   .tech-tag {
-    font-size: 0.72rem;
+    font-size: var(--fs-body-sm);   /* 10pt 本文（小さめ） */
     font-family: 'SF Mono', 'Fira Code', monospace;
     color: var(--accent);
     background: rgba(100, 255, 218, 0.06);
@@ -194,7 +194,7 @@ const projects = [
     flex-shrink: 0;
   }
   .project-link {
-    font-size: 0.8rem;
+    font-size: var(--fs-body-md);   /* 12pt 本文（中サイズ） */
     color: var(--text-secondary);
     transition: color 0.2s;
     white-space: nowrap;

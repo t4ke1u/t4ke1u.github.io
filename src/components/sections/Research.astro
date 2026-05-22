@@ -151,14 +151,14 @@ const papers = [
 
   /* Overview */
   .overview-title {
-    font-size: 1.1rem;
+    font-size: var(--fs-h2);        /* 18pt 中見出し */
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 1.25rem;
     line-height: 1.4;
   }
   .research-overview p {
-    font-size: 0.925rem;
+    font-size: var(--fs-body);      /* 14pt 本文 */
     line-height: 1.85;
     color: var(--text-secondary);
     margin-bottom: 1rem;
@@ -177,9 +177,9 @@ const papers = [
     border-bottom: 1px solid var(--border);
     margin-bottom: 1.25rem !important;
   }
-  .stat { font-size: 0.85rem; color: var(--text-secondary); }
+  .stat { font-size: var(--fs-body-md); color: var(--text-secondary); } /* 12pt 本文（中） */
   .stat-num {
-    font-size: 1.5rem;
+    font-size: var(--fs-h2);        /* 18pt 中見出し */
     font-weight: 600;
     color: var(--accent);
     font-family: 'SF Mono', 'Fira Code', monospace;
@@ -188,7 +188,7 @@ const papers = [
   .stat-sep { color: var(--border); }
 
   .ieee-link {
-    font-size: 0.82rem;
+    font-size: var(--fs-body-sm);   /* 10pt 本文（小さめ） */
     font-family: 'SF Mono', 'Fira Code', monospace;
     color: var(--accent);
     transition: opacity 0.2s;
@@ -203,7 +203,7 @@ const papers = [
   }
 
   .sub-heading {
-    font-size: 0.78rem;
+    font-size: var(--fs-h3);        /* 14pt 小見出し */
     font-weight: 500;
     color: var(--accent);
     letter-spacing: 0.1em;
@@ -232,14 +232,14 @@ const papers = [
     flex-shrink: 0;
   }
   .award-title {
-    font-size: 0.875rem;
+    font-size: var(--fs-h3);        /* 14pt 小見出し */
     font-weight: 500;
     color: var(--text-primary);
     line-height: 1.4;
     margin-bottom: 0.15rem;
   }
   .award-org {
-    font-size: 0.77rem;
+    font-size: var(--fs-body-sm);   /* 10pt 本文（小さめ） */
     color: var(--text-secondary);
   }
 
@@ -259,7 +259,7 @@ const papers = [
   }
   .paper-item:last-child { border-bottom: none; padding-bottom: 0; }
   .paper-type {
-    font-size: 0.68rem;
+    font-size: var(--fs-body-sm);   /* 10pt 本文（小さめ） */
     font-family: 'SF Mono', 'Fira Code', monospace;
     color: var(--accent);
     background: rgba(100, 255, 218, 0.07);
@@ -271,7 +271,7 @@ const papers = [
     display: block;
   }
   .paper-title {
-    font-size: 0.82rem;
+    font-size: var(--fs-body-md);   /* 12pt 本文（中サイズ） */
     color: var(--text-primary);
     line-height: 1.5;
     margin-bottom: 0.25rem;
@@ -279,7 +279,7 @@ const papers = [
   }
   a.paper-title:hover { color: var(--accent); }
   .paper-meta {
-    font-size: 0.75rem;
+    font-size: var(--fs-body-sm);   /* 10pt 本文（小さめ） */
     color: var(--text-secondary);
     line-height: 1.5;
   }

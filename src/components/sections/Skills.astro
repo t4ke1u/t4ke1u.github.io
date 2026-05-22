@@ -86,7 +86,7 @@ const categories = [
   }
 
   .category-label {
-    font-size: 0.78rem;
+    font-size: var(--fs-h3);        /* 14pt 小見出し */
     font-weight: 500;
     color: var(--accent);
     letter-spacing: 0.1em;
@@ -106,7 +106,7 @@ const categories = [
     align-items: center;
     gap: 0.35rem;
     padding: 0.35rem 0.7rem;
-    font-size: 0.8rem;
+    font-size: var(--fs-body-md);   /* 12pt 本文（中サイズ） */
     color: var(--text-secondary);
     background: var(--bg-card);
     border: 1px solid var(--border);
@@ -120,7 +120,7 @@ const categories = [
   }
 
   .tag-years {
-    font-size: 0.7rem;
+    font-size: var(--fs-body-sm);   /* 10pt 本文（小さめ） */
     font-family: 'SF Mono', 'Fira Code', monospace;
     color: var(--accent);
     opacity: 0.8;
