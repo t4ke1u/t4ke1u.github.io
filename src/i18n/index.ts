@@ -7,11 +7,9 @@ export const ui = {
       langHref: '/en/',
     },
     hero: {
-      greeting: 'はじめまして、私の名前は',
-      name: '太田 岳。',
-      tagline: '量子回路からモバイルアプリまで、\nフルスタックのシステムを構築しています。',
-      description:
-        'ソニー・ホンダモビリティのソフトウェアエンジニア。早稲田大学大学院修士（工学）。量子コンピュータ研究とプロダクトエンジニアリングを横断し、バックエンド・クラウド・モバイルアプリを一貫して開発しています。',
+      greeting: 'Software Engineer',
+      name: '太田 岳',
+      tagline: 'Sony Honda Mobility  /  Waseda University, M.Eng.',
       ctaWork: '実績を見る',
       ctaContact: 'お問い合わせ',
     },
@@ -198,11 +196,9 @@ export const ui = {
       langHref: '/',
     },
     hero: {
-      greeting: 'Hi, my name is',
-      name: 'Takeru Ota.',
-      tagline: "I build full-stack systems —\nfrom quantum circuits to mobile apps.",
-      description:
-        "Software engineer at Sony Honda Mobility, M.Eng. from Waseda University. Bridging quantum computing research and real-world product engineering across backend, frontend, cloud, and mobile.",
+      greeting: 'Software Engineer',
+      name: 'Takeru Ota',
+      tagline: 'Sony Honda Mobility  /  Waseda University, M.Eng.',
       ctaWork: 'View my work',
       ctaContact: 'Get in touch',
     },

@@ -119,16 +119,7 @@ const navLinks = [
     top: 0;
     inset-inline: 0;
     z-index: 100;
-    /* 背景は透明: pill が浮いているように見せる */
     background: transparent;
-    transition: background 0.25s ease;
-  }
-  /* スクロール後にうっすら背景を付ける (.scrolled は JS で付与) */
-  .nav.scrolled {
-    background: var(--nav-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
-    border-bottom: 1px solid var(--border);
   }
 
   /* ── Inner grid: [spacer] [pill] [controls] ─────── */
@@ -189,7 +180,7 @@ const navLinks = [
     display: inline-flex;
     align-items: center;
     justify-content: center;
-    height: 28px;
+    height: 34px;
     border-radius: 9999px;
     cursor: pointer;
     color: var(--text-secondary);
@@ -198,14 +189,14 @@ const navLinks = [
   .ctrl-btn:hover { color: var(--accent); }
 
   .theme-btn {
-    width: 28px;
+    width: 34px;
     background: none;
     border: 1px solid var(--border);
   }
   .theme-btn:hover { border-color: var(--accent); background: var(--pill-link-hover-bg); }
 
   .lang-btn {
-    padding-inline: 0.55rem;
+    padding-inline: 0.75rem;
     font-size: var(--fs-body-sm);
     font-family: 'SF Mono', 'Fira Code', monospace;
     letter-spacing: 0.08em;
@@ -218,27 +209,36 @@ const navLinks = [
   .hamburger {
     display: none;
     flex-direction: column;
+    align-items: center;
     justify-content: center;
-    gap: 5px;
+    gap: 4px;
+    width: 34px;
+    height: 34px;
+    padding: 0;
     background: none;
-    border: none;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
     cursor: pointer;
-    padding: 4px;
-    width: 28px;
-    color: var(--text-primary);
+    color: var(--text-secondary);
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .hamburger:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+    background: var(--pill-link-hover-bg);
   }
   .hamburger span {
     display: block;
-    width: 100%;
-    height: 2px;
+    width: 14px;
+    height: 1.5px;
     background: currentColor;
     border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease;
     transform-origin: center;
   }
-  .hamburger.is-open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+  .hamburger.is-open span:nth-child(1) { transform: translateY(5.5px) rotate(45deg); }
   .hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
-  .hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  .hamburger.is-open span:nth-child(3) { transform: translateY(-5.5px) rotate(-45deg); }
 
   /* ── Mobile menu ────────────────────────────────── */
   .mobile-menu {
@@ -247,11 +247,11 @@ const navLinks = [
     max-height: 0;
     transition: max-height 0.35s ease;
     background: var(--nav-bg);
-    backdrop-filter: blur(12px);
-    -webkit-backdrop-filter: blur(12px);
+  }
+  .mobile-menu.is-open {
+    max-height: 440px;
     border-bottom: 1px solid var(--border);
   }
-  .mobile-menu.is-open { max-height: 440px; }
 
   .mobile-links {
     padding: 1rem 2rem 0.5rem;
@@ -303,13 +303,23 @@ const navLinks = [
   /* ── Responsive ─────────────────────────────────── */
   @media (max-width: 768px) {
     .nav-inner {
-      grid-template-columns: 1fr auto;
+      display: flex;
+      justify-content: flex-end;
+      height: auto;
+      padding-block: 0.75rem;
     }
+    .nav-spacer { display: none; }
     .nav-pill   { display: none; }
     .theme-btn,
     .lang-btn   { display: none; }
     .hamburger  { display: flex; }
     .mobile-menu { display: block; }
+
+    .nav.menu-open {
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+    }
   }
 </style>
 
@@ -339,10 +349,12 @@ const navLinks = [
   /* ---- Hamburger ---- */
   const hamburger  = document.getElementById('hamburger') as HTMLButtonElement | null;
   const mobileMenu = document.getElementById('mobile-menu') as HTMLElement | null;
+  const nav        = document.getElementById('nav') as HTMLElement | null;
 
   hamburger?.addEventListener('click', () => {
     const isOpen = hamburger.classList.toggle('is-open');
     mobileMenu?.classList.toggle('is-open');
+    nav?.classList.toggle('menu-open', isOpen);
     hamburger.setAttribute('aria-expanded', String(isOpen));
     mobileMenu?.setAttribute('aria-hidden', String(!isOpen));
   });
@@ -351,6 +363,7 @@ const navLinks = [
     link.addEventListener('click', () => {
       hamburger?.classList.remove('is-open');
       mobileMenu?.classList.remove('is-open');
+      nav?.classList.remove('menu-open');
       hamburger?.setAttribute('aria-expanded', 'false');
       mobileMenu?.setAttribute('aria-hidden', 'true');
     });
@@ -372,11 +385,4 @@ const navLinks = [
     btn.addEventListener('click', applyThemeToggle);
   });
 
-  /* ---- Scrolled state for nav background ---- */
-  const nav = document.getElementById('nav');
-  const onScroll = () => {
-    nav?.classList.toggle('scrolled', window.scrollY > 20);
-  };
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
 </script>

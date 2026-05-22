@@ -5,76 +5,219 @@ interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const t = ui[lang].hero;
 
-const taglineLines = t.tagline.split('\n');
+const col1 = [
+  { src: '/ocean-sunset.jpg',                alt: '' },
+  { src: '/notre-dame-cathedral.jpg',        alt: '' },
+  { src: '/autumn-temple-gate.png',          alt: '' },
+  { src: '/coastal-cape-lighthouse.jpg',     alt: '' },
+];
+const col2 = [
+  { src: '/shibazakura-torii.jpg',           alt: '' },
+  { src: '/historic-warehouse-corridor.jpg', alt: '' },
+  { src: '/autumn-train-forest.jpg',         alt: '' },
+];
+
+const loop1 = [...col1, ...col1];
+const loop2 = [...col2, ...col2];
 ---
 
 <section class="hero" id="home">
-  <p class="hero-greeting" data-animate data-animate-delay="1">{t.greeting}</p>
-  <h1 class="hero-name" data-animate data-animate-delay="2">{t.name}</h1>
-  <h2 class="hero-tagline" data-animate data-animate-delay="3">
-    {taglineLines.map((line, i) => (
-      <>
-        {line}
-        {i < taglineLines.length - 1 && <br />}
-      </>
-    ))}
-  </h2>
-  <p class="hero-description" data-animate data-animate-delay="4">{t.description}</p>
-  <div class="hero-actions" data-animate data-animate-delay="5">
-    <a href="#works"   class="btn btn--primary">{t.ctaWork}</a>
-    <a href="#contact" class="btn btn--outline">{t.ctaContact}</a>
+  <div class="hero-content">
+    <p class="hero-greeting" data-animate data-animate-delay="1">{t.greeting}</p>
+    <h1 class="hero-name"    data-animate data-animate-delay="2">{t.name}</h1>
+    <p class="hero-tagline"  data-animate data-animate-delay="3">{t.tagline}</p>
+    <div class="hero-actions" data-animate data-animate-delay="4">
+      <a href="#works"   class="btn btn--primary">{t.ctaWork}</a>
+      <a href="#contact" class="btn btn--outline">{t.ctaContact}</a>
+    </div>
+  </div>
+
+  <div class="hero-photos" id="hero-photos" aria-hidden="true">
+    <div class="photo-col photo-col--down">
+      {loop1.map((p) => (
+        <div class="photo-item">
+          <img src={p.src} alt="" loading="lazy" />
+        </div>
+      ))}
+    </div>
+    <div class="photo-col photo-col--up">
+      {loop2.map((p) => (
+        <div class="photo-item">
+          <img src={p.src} alt="" loading="lazy" />
+        </div>
+      ))}
+    </div>
   </div>
 </section>
 
 <style>
+  /* ── Hero layout ───────────────────────────────── */
   .hero {
     min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    gap: 5rem;
     max-width: 1100px;
     margin-inline: auto;
-    padding: calc(var(--nav-height) + 3rem) 2rem 4rem;
+    padding: calc(var(--nav-height) + 2rem) 2rem 4rem;
   }
+
+  /* ── Text ──────────────────────────────────────── */
+  .hero-content { display: flex; flex-direction: column; }
 
   .hero-greeting {
     font-size: var(--fs-body-sm);
-    font-weight: 400;
-    color: var(--accent);
     font-family: 'SF Mono', 'Fira Code', monospace;
-    letter-spacing: 0.08em;
-    margin-bottom: 1.5rem;
+    color: var(--accent);
+    letter-spacing: 0.12em;
+    margin-bottom: 1.25rem;
   }
 
   .hero-name {
-    font-size: var(--fs-title);
+    font-size: clamp(2.5rem, 4vw, 3.5rem);
     font-weight: 700;
     color: var(--text-primary);
-    line-height: 1.05;
-    margin-bottom: 0.5rem;
+    line-height: 1.1;
+    margin-bottom: 1rem;
     letter-spacing: -0.02em;
   }
 
   .hero-tagline {
-    font-size: var(--fs-h1);
-    font-weight: 500;
+    font-size: var(--fs-body-sm);
+    font-family: 'SF Mono', 'Fira Code', monospace;
     color: var(--text-secondary);
-    line-height: 1.25;
-    margin-bottom: 2rem;
-    letter-spacing: -0.01em;
+    letter-spacing: 0.05em;
+    line-height: 1.6;
+    margin-bottom: 2.5rem;
   }
 
-  .hero-description {
-    max-width: 520px;
-    font-size: var(--fs-body);
-    line-height: 1.8;
-    color: var(--text-secondary);
-    margin-bottom: 3rem;
+  .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; }
+
+  /* ── Photo carousel ────────────────────────────── */
+  .hero-photos {
+    position: relative;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: start;   /* 列をコンテンツ高さのまま保持 → -50% が正確に一周分になる */
+    gap: 0.75rem;
+    height: 580px;
+    overflow: hidden;
   }
 
-  .hero-actions {
+  .hero-photos::before,
+  .hero-photos::after {
+    content: '';
+    position: absolute;
+    inset-inline: 0;
+    height: 110px;
+    z-index: 2;
+    pointer-events: none;
+  }
+  .hero-photos::before {
+    top: 0;
+    background: linear-gradient(to bottom, var(--bg) 0%, transparent 100%);
+  }
+  .hero-photos::after {
+    bottom: 0;
+    background: linear-gradient(to top, var(--bg) 0%, transparent 100%);
+  }
+
+  .photo-col {
     display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 0.75rem;
+    will-change: transform;
+  }
+
+  .photo-col--down { animation: colDown 32s linear infinite; }
+  .photo-col--up   { animation: colUp   22s linear infinite; }
+
+  @keyframes colDown {
+    from { transform: translateY(-50%); }
+    to   { transform: translateY(0%);   }
+  }
+  @keyframes colUp {
+    from { transform: translateY(0%);   }
+    to   { transform: translateY(-50%); }
+  }
+
+  .photo-item {
+    width: 100%;
+    flex-shrink: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  }
+
+  .photo-item img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ── Responsive ─────────────────────────────────── */
+  @media (max-width: 900px) {
+    .hero {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+      padding-top: calc(var(--nav-height) + 2rem);
+    }
+    .hero-photos { height: 340px; }
+  }
+
+  @media (max-width: 480px) {
+    .hero-photos { height: 260px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .photo-col { animation: none; }
   }
 </style>
+
+<script>
+  const photosEl = document.getElementById('hero-photos');
+  if (photosEl) {
+    const cols = [...photosEl.querySelectorAll<HTMLElement>('.photo-col')];
+    let rafId: number | null = null;
+
+    function getAnims(): Animation[] {
+      return cols.flatMap(col => col.getAnimations());
+    }
+
+    function tweenRate(target: number, ms = 600) {
+      if (rafId !== null) cancelAnimationFrame(rafId);
+
+      const anims = getAnims();
+      if (!anims.length) return;
+
+      // resume before tweening to non-zero so currentTime advances
+      if (target > 0) anims.forEach(a => { a.playbackRate = 0; a.play(); });
+
+      const starts = anims.map(a => a.playbackRate);
+      const t0 = performance.now();
+
+      function tick(now: number) {
+        const p = Math.min((now - t0) / ms, 1);
+        // easeInOut for natural feel
+        const ease = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
+
+        anims.forEach((a, i) => {
+          a.playbackRate = starts[i] + (target - starts[i]) * ease;
+        });
+
+        if (p < 1) {
+          rafId = requestAnimationFrame(tick);
+        } else {
+          rafId = null;
+          if (target === 0) anims.forEach(a => a.pause());
+        }
+      }
+
+      rafId = requestAnimationFrame(tick);
+    }
+
+    photosEl.addEventListener('mouseenter', () => tweenRate(0));
+    photosEl.addEventListener('mouseleave', () => tweenRate(1));
+  }
+</script>
