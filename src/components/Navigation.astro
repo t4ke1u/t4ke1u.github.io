@@ -16,46 +16,46 @@ const navLinks = [
 
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href={lang === 'ja' ? '/' : '/en/'} class="nav-logo">Portfolio</a>
 
-    <ul class="nav-links">
+    <!-- 左: デスクトップのみ空スペース (グリッドの均衡用) -->
+    <div class="nav-spacer"></div>
+
+    <!-- 中央: pill 型ナビ (デスクトップのみ) -->
+    <ul class="nav-pill">
       {navLinks.map(({ href, label }) => (
-        <li><a href={href} class="nav-link">{label}</a></li>
+        <li><a href={href} class="pill-link">{label}</a></li>
       ))}
     </ul>
 
-    <div class="nav-right">
-      <!-- テーマトグル -->
-      <button class="theme-toggle" id="theme-toggle" aria-label="テーマを切り替える">
-        <!-- ダークモード時: 太陽アイコン (ライトに切り替え) -->
-        <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+    <!-- 右: コントロール -->
+    <div class="nav-controls">
+      <!-- テーマトグル (デスクトップ) -->
+      <button class="ctrl-btn theme-btn" data-theme-toggle aria-label="テーマを切り替える">
+        <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
           viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <circle cx="12" cy="12" r="5"/>
-          <line x1="12" y1="1"  x2="12" y2="3"/>
-          <line x1="12" y1="21" x2="12" y2="23"/>
-          <line x1="4.22"  y1="4.22"  x2="5.64"  y2="5.64"/>
+          <line x1="12" y1="1"  x2="12" y2="3"/>  <line x1="12" y1="21" x2="12" y2="23"/>
+          <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
           <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
-          <line x1="1"  y1="12" x2="3"  y2="12"/>
-          <line x1="21" y1="12" x2="23" y2="12"/>
-          <line x1="4.22"  y1="19.78" x2="5.64"  y2="18.36"/>
-          <line x1="18.36" y1="5.64"  x2="19.78" y2="4.22"/>
+          <line x1="1" y1="12" x2="3" y2="12"/>  <line x1="21" y1="12" x2="23" y2="12"/>
+          <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+          <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
         </svg>
-        <!-- ライトモード時: 月アイコン (ダークに切り替え) -->
-        <svg class="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+        <svg class="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
           viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
           <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
         </svg>
       </button>
 
-      <!-- 言語トグル -->
-      <a href={t.langHref} class="lang-toggle" aria-label="Switch language">
+      <!-- 言語トグル (デスクトップ) -->
+      <a href={t.langHref} class="ctrl-btn lang-btn" aria-label="Switch language">
         {t.langLabel}
       </a>
 
-      <!-- ハンバーガー (モバイル) -->
-      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false">
+      <!-- ハンバーガー (モバイルのみ) -->
+      <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -63,122 +63,158 @@ const navLinks = [
     </div>
   </div>
 
-  <div class="mobile-menu" aria-hidden="true">
+  <!-- モバイルメニュー -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
     <ul class="mobile-links">
       {navLinks.map(({ href, label }) => (
         <li><a href={href} class="mobile-link">{label}</a></li>
       ))}
-      <li>
-        <a href={t.langHref} class="mobile-link mobile-link--lang">
-          {t.langLabel}
-        </a>
-      </li>
     </ul>
+
+    <!-- モバイル内のユーティリティ -->
+    <div class="mobile-utils">
+      <button class="mobile-util-btn" data-theme-toggle>
+        <span class="util-icon">
+          <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="5"/>
+            <line x1="12" y1="1" x2="12" y2="3"/> <line x1="12" y1="21" x2="12" y2="23"/>
+            <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/>
+            <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/>
+            <line x1="1" y1="12" x2="3" y2="12"/> <line x1="21" y1="12" x2="23" y2="12"/>
+            <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/>
+            <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/>
+          </svg>
+          <svg class="theme-icon-moon" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/>
+          </svg>
+        </span>
+        <span class="theme-label-for-dark">Light Mode</span>
+        <span class="theme-label-for-light">Dark Mode</span>
+      </button>
+
+      <a href={t.langHref} class="mobile-util-btn">
+        <span class="util-icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14"
+            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </span>
+        {t.langLabel}
+      </a>
+    </div>
   </div>
 </nav>
 
 <style>
+  /* ── Nav wrapper ────────────────────────────────── */
   .nav {
     position: fixed;
     top: 0;
     inset-inline: 0;
     z-index: 100;
+    /* 背景は透明: pill が浮いているように見せる */
+    background: transparent;
+    transition: background 0.25s ease;
+  }
+  /* スクロール後にうっすら背景を付ける (.scrolled は JS で付与) */
+  .nav.scrolled {
     background: var(--nav-bg);
     backdrop-filter: blur(12px);
     -webkit-backdrop-filter: blur(12px);
     border-bottom: 1px solid var(--border);
-    transition: background 0.25s ease, border-color 0.25s ease;
   }
 
+  /* ── Inner grid: [spacer] [pill] [controls] ─────── */
   .nav-inner {
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
     max-width: 1200px;
     margin-inline: auto;
     padding-inline: 2rem;
     height: var(--nav-height);
+  }
+
+  .nav-spacer { /* 左の空きスペース */ }
+
+  /* ── Pill nav ───────────────────────────────────── */
+  .nav-pill {
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    gap: 0.15rem;
+    padding: 0.3rem 0.4rem;
+    background: var(--pill-bg);
+    border: 1px solid var(--pill-border);
+    border-radius: 9999px;
+    box-shadow: 0 4px 24px var(--pill-shadow);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    transition: background 0.25s, border-color 0.25s, box-shadow 0.25s;
+    list-style: none;
   }
 
-  .nav-logo {
-    font-size: var(--fs-body);
-    font-weight: 600;
-    color: var(--accent);
-    letter-spacing: 0.08em;
-    transition: opacity 0.2s;
-  }
-  .nav-logo:hover { opacity: 0.8; }
-
-  .nav-links {
-    display: flex;
-    gap: 2.5rem;
-  }
-
-  .nav-link {
+  .pill-link {
+    display: block;
+    padding: 0.38rem 0.9rem;
     font-size: var(--fs-body-sm);
     font-weight: 400;
     color: var(--text-secondary);
-    letter-spacing: 0.06em;
-    position: relative;
-    transition: color 0.2s;
+    letter-spacing: 0.05em;
+    border-radius: 9999px;
+    transition: background 0.18s, color 0.18s;
+    white-space: nowrap;
   }
-  .nav-link::after {
-    content: '';
-    position: absolute;
-    bottom: -3px;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--accent);
-    transition: width 0.25s ease;
+  .pill-link:hover {
+    background: var(--pill-link-hover-bg);
+    color: var(--accent);
   }
-  .nav-link:hover { color: var(--accent); }
-  .nav-link:hover::after { width: 100%; }
 
-  /* Right group */
-  .nav-right {
+  /* ── Right controls ─────────────────────────────── */
+  .nav-controls {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    justify-content: flex-end;
+    gap: 0.5rem;
   }
 
-  /* Theme toggle button */
-  .theme-toggle {
-    display: flex;
+  /* Shared base for theme + lang buttons */
+  .ctrl-btn {
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    width: 30px;
-    height: 30px;
-    background: none;
-    border: 1px solid var(--border);
-    border-radius: 50%;
+    height: 28px;
+    border-radius: 9999px;
     cursor: pointer;
     color: var(--text-secondary);
-    transition: color 0.2s, border-color 0.2s;
-    flex-shrink: 0;
+    transition: color 0.2s, background 0.2s, border-color 0.2s;
   }
-  .theme-toggle:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
+  .ctrl-btn:hover { color: var(--accent); }
 
-  /* Language toggle */
-  .lang-toggle {
+  .theme-btn {
+    width: 28px;
+    background: none;
+    border: 1px solid var(--border);
+  }
+  .theme-btn:hover { border-color: var(--accent); background: var(--pill-link-hover-bg); }
+
+  .lang-btn {
+    padding-inline: 0.55rem;
     font-size: var(--fs-body-sm);
     font-family: 'SF Mono', 'Fira Code', monospace;
-    color: var(--text-secondary);
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    padding: 0.2rem 0.55rem;
     letter-spacing: 0.08em;
-    transition: color 0.2s, border-color 0.2s;
+    background: none;
+    border: 1px solid var(--border);
   }
-  .lang-toggle:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
+  .lang-btn:hover { border-color: var(--accent); background: var(--pill-link-hover-bg); }
 
-  /* Hamburger */
+  /* ── Hamburger (mobile only) ────────────────────── */
   .hamburger {
     display: none;
     flex-direction: column;
@@ -189,12 +225,13 @@ const navLinks = [
     cursor: pointer;
     padding: 4px;
     width: 28px;
+    color: var(--text-primary);
   }
   .hamburger span {
     display: block;
     width: 100%;
     height: 2px;
-    background: var(--text-primary);
+    background: currentColor;
     border-radius: 2px;
     transition: transform 0.3s ease, opacity 0.3s ease;
     transform-origin: center;
@@ -203,64 +240,114 @@ const navLinks = [
   .hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
   .hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* Mobile menu */
+  /* ── Mobile menu ────────────────────────────────── */
   .mobile-menu {
     display: none;
     overflow: hidden;
     max-height: 0;
     transition: max-height 0.35s ease;
-    border-top: 1px solid var(--border);
     background: var(--nav-bg);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
   }
-  .mobile-menu.is-open { max-height: 380px; }
+  .mobile-menu.is-open { max-height: 440px; }
 
   .mobile-links {
-    padding: 1rem 2rem 1.75rem;
+    padding: 1rem 2rem 0.5rem;
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0;
+    list-style: none;
   }
-
   .mobile-link {
     display: block;
-    padding: 0.65rem 0;
+    padding: 0.7rem 0;
     font-size: var(--fs-body);
-    font-weight: 400;
     color: var(--text-secondary);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.05em;
     border-bottom: 1px solid var(--border);
     transition: color 0.2s, padding-left 0.2s;
   }
-  .mobile-link:hover {
-    color: var(--accent);
-    padding-left: 0.5rem;
-  }
+  .mobile-link:hover { color: var(--accent); padding-left: 0.4rem; }
   .mobile-links li:last-child .mobile-link { border-bottom: none; }
-  .mobile-link--lang {
-    font-family: 'SF Mono', 'Fira Code', monospace;
-    color: var(--accent);
-  }
 
+  /* Mobile utility row */
+  .mobile-utils {
+    display: flex;
+    gap: 0.75rem;
+    padding: 1rem 2rem 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .mobile-util-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.6rem 0;
+    font-size: var(--fs-body-sm);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--text-secondary);
+    background: none;
+    border: 1px solid var(--border);
+    border-radius: 9999px;
+    cursor: pointer;
+    letter-spacing: 0.05em;
+    transition: color 0.2s, border-color 0.2s, background 0.2s;
+  }
+  .mobile-util-btn:hover { color: var(--accent); border-color: var(--accent); }
+
+  .util-icon { display: flex; align-items: center; }
+
+  /* ── Responsive ─────────────────────────────────── */
   @media (max-width: 768px) {
-    .nav-links  { display: none; }
+    .nav-inner {
+      grid-template-columns: 1fr auto;
+    }
+    .nav-pill   { display: none; }
+    .theme-btn,
+    .lang-btn   { display: none; }
     .hamburger  { display: flex; }
     .mobile-menu { display: block; }
   }
 </style>
 
+<style is:global>
+  /* ── CSS 変数: pill の色はテーマで変わる ─────────── */
+  :root {
+    --pill-bg:              rgba(255, 255, 255, 0.05);
+    --pill-border:          rgba(168, 178, 216, 0.18);
+    --pill-shadow:          rgba(0, 0, 0, 0.25);
+    --pill-link-hover-bg:   rgba(100, 255, 218, 0.10);
+  }
+  [data-theme="light"] {
+    --pill-bg:              rgba(0, 0, 0, 0.04);
+    --pill-border:          rgba(17, 24, 39, 0.14);
+    --pill-shadow:          rgba(0, 0, 0, 0.08);
+    --pill-link-hover-bg:   rgba(13, 149, 136, 0.08);
+  }
+
+  /* ── Mobile theme label visibility ──────────────── */
+  .theme-label-for-dark  { display: inline; }
+  .theme-label-for-light { display: none; }
+  [data-theme="light"] .theme-label-for-dark  { display: none; }
+  [data-theme="light"] .theme-label-for-light { display: inline; }
+</style>
+
 <script>
-  /* ---- ハンバーガーメニュー ---- */
-  const hamburger = document.querySelector<HTMLButtonElement>('.hamburger');
-  const mobileMenu = document.querySelector<HTMLElement>('.mobile-menu');
+  /* ---- Hamburger ---- */
+  const hamburger  = document.getElementById('hamburger') as HTMLButtonElement | null;
+  const mobileMenu = document.getElementById('mobile-menu') as HTMLElement | null;
 
   hamburger?.addEventListener('click', () => {
     const isOpen = hamburger.classList.toggle('is-open');
     mobileMenu?.classList.toggle('is-open');
     hamburger.setAttribute('aria-expanded', String(isOpen));
-    if (mobileMenu) mobileMenu.setAttribute('aria-hidden', String(!isOpen));
+    mobileMenu?.setAttribute('aria-hidden', String(!isOpen));
   });
 
-  document.querySelectorAll('.mobile-link:not(.mobile-link--lang)').forEach(link => {
+  document.querySelectorAll('.mobile-link').forEach(link => {
     link.addEventListener('click', () => {
       hamburger?.classList.remove('is-open');
       mobileMenu?.classList.remove('is-open');
@@ -269,22 +356,27 @@ const navLinks = [
     });
   });
 
-  /* ---- テーマトグル ---- */
-  const themeToggle = document.getElementById('theme-toggle');
-
-  themeToggle?.addEventListener('click', () => {
+  /* ---- Theme toggle (desktop + mobile) ---- */
+  function applyThemeToggle() {
     const html = document.documentElement;
     const current = html.getAttribute('data-theme') ?? 'dark';
     const next = current === 'dark' ? 'light' : 'dark';
-
-    // スムーズなトランジション
     html.classList.add('theme-transitioning');
     html.setAttribute('data-theme', next);
     localStorage.setItem('theme', next);
-
-    // particles を再初期化
     window.dispatchEvent(new CustomEvent('theme-change'));
-
     setTimeout(() => html.classList.remove('theme-transitioning'), 300);
+  }
+
+  document.querySelectorAll('[data-theme-toggle]').forEach(btn => {
+    btn.addEventListener('click', applyThemeToggle);
   });
+
+  /* ---- Scrolled state for nav background ---- */
+  const nav = document.getElementById('nav');
+  const onScroll = () => {
+    nav?.classList.toggle('scrolled', window.scrollY > 20);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
 </script>
