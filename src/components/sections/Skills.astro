@@ -1,0 +1,135 @@
+---
+const categories = [
+  {
+    label: 'Frontend & Mobile',
+    skills: [
+      { name: 'HTML / CSS', years: '8yr' },
+      { name: 'TypeScript', years: '4yr' },
+      { name: 'React / Next.js', years: '4yr' },
+      { name: 'Swift / SwiftUI', years: '5yr' },
+      { name: 'Flutter / Dart', years: '3yr' },
+      { name: 'Kotlin / KMP', years: '3mo' },
+    ],
+  },
+  {
+    label: 'Backend & Database',
+    skills: [
+      { name: 'Python / FastAPI', years: '6yr' },
+      { name: 'PostgreSQL', years: '1yr' },
+      { name: 'PHP / WordPress', years: '1yr' },
+      { name: 'Java', years: '1yr' },
+    ],
+  },
+  {
+    label: 'Cloud & Infrastructure',
+    skills: [
+      { name: 'AWS', years: '4yr', note: 'EC2 · ECS · Lambda · Bedrock · RDB · DynamoDB' },
+      { name: 'Docker', years: '3yr' },
+      { name: 'Linux', years: '3yr' },
+      { name: 'Google Cloud', years: '1yr' },
+    ],
+  },
+  {
+    label: 'Research & AI',
+    skills: [
+      { name: 'Qiskit', years: '4yr' },
+      { name: 'PyTorch', years: '4yr' },
+      { name: 'Fixstars Amplify', years: '4yr' },
+      { name: 'LangGraph', years: '' },
+      { name: 'Strands Agents', years: '' },
+      { name: 'MCP', years: '' },
+    ],
+  },
+  {
+    label: 'Design & Tools',
+    skills: [
+      { name: 'Figma / UI&UX', years: '5yr' },
+      { name: 'Git / GitHub', years: '6yr' },
+      { name: 'Jira / Confluence', years: '3yr' },
+      { name: 'C', years: '3yr' },
+    ],
+  },
+];
+---
+
+<section class="section" id="skills">
+  <div class="container">
+    <header class="section-header" data-animate>
+      <span class="section-num">02.</span>
+      <h2 class="section-title">Skills</h2>
+      <div class="section-line"></div>
+    </header>
+
+    <div class="skills-grid">
+      {categories.map((cat, i) => (
+        <div class="skill-category" data-animate data-animate-delay={String(i % 3 + 1)}>
+          <h3 class="category-label">{cat.label}</h3>
+          <div class="skill-tags">
+            {cat.skills.map(skill => (
+              <span class="tag">
+                {skill.name}
+                {skill.years && <span class="tag-years">{skill.years}</span>}
+              </span>
+            ))}
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2.5rem;
+  }
+
+  .category-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-bottom: 1rem;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+  }
+
+  .skill-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    transition: color 0.2s, border-color 0.2s;
+    white-space: nowrap;
+  }
+  .tag:hover {
+    color: var(--text-primary);
+    border-color: rgba(168, 178, 216, 0.25);
+  }
+
+  .tag-years {
+    font-size: 0.7rem;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--accent);
+    opacity: 0.8;
+  }
+
+  @media (max-width: 900px) {
+    .skills-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px) {
+    .skills-grid { grid-template-columns: 1fr; }
+  }
+</style>

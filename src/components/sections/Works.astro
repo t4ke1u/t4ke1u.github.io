@@ -1,0 +1,208 @@
+---
+const projects = [
+  {
+    num: '01',
+    category: 'Research · Open Source',
+    title: 'Personalized Course Selection System',
+    period: '2022 — 2026',
+    description:
+      'Modeled university course selection as a quantum combinatorial optimization problem for the first time in academic literature. Developed a hybrid quantum-classical algorithm capable of solving 500-variable instances on gate-model quantum computers — a scale record in the domain.',
+    tech: ['Python', 'Qiskit', 'PyTorch', 'Fixstars Amplify', 'FastAPI', 'AWS'],
+    links: [
+      { label: 'GitHub', href: 'https://github.com/t4ke1u/qlasop-app' },
+      { label: 'IEEE Access', href: 'https://ieeexplore.ieee.org/author/308719292671247' },
+    ],
+    featured: true,
+  },
+  {
+    num: '02',
+    category: 'Internship · Quanmatic',
+    title: 'Business Data Management App',
+    period: '2023 — 2024',
+    description:
+      'Led end-to-end development of an internal tool to manage and clean operational data used for quantum optimization workflows. Designed the UI/UX in Figma, implemented the FastAPI backend, and built the Next.js frontend — all as a solo contributor.',
+    tech: ['FastAPI', 'Next.js', 'PostgreSQL', 'AWS', 'Figma'],
+    links: [],
+  },
+  {
+    num: '03',
+    category: 'Internship · Quanmatic',
+    title: 'LLM × Quantum Optimization Web App (PoC)',
+    period: '2024 — 2025',
+    description:
+      'Conceived and built a proof-of-concept web app that lets users interact with a quantum optimization engine in natural language. Connected LLM inference, web search, database retrieval, and the optimization solver via MCP, then validated it internally.',
+    tech: ['LangGraph', 'MCP', 'LLM APIs', 'FastAPI', 'Next.js'],
+    links: [],
+  },
+  {
+    num: '04',
+    category: 'Side Project · Sony Honda Mobility',
+    title: 'Issue-to-PR Auto-generation CI/CD',
+    period: '2026',
+    description:
+      'Built a CI/CD pipeline using GitHub Actions and Claude Code that automatically generates implementation code from an issue description and opens a pull request — reducing the feedback loop for routine feature work on SHM\'s commercial mobile app.',
+    tech: ['GitHub Actions', 'Claude Code', 'Kotlin / KMP'],
+    links: [],
+  },
+  {
+    num: '05',
+    category: 'Club Activity · Waseda University',
+    title: 'Campus Festival App & Website',
+    period: '2020 — 2022',
+    description:
+      'Developed and operated mobile apps and websites for campus festival visitors as part of Riko-ten Planning Committee. In the third year, took on the IT Division Lead role — managing a 30-member cross-year team through requirements definition, onboarding, and release.',
+    tech: ['Swift / UIKit', 'Flutter', 'React', 'Google Cloud'],
+    links: [],
+  },
+];
+---
+
+<section class="section" id="works">
+  <div class="container">
+    <header class="section-header" data-animate>
+      <span class="section-num">03.</span>
+      <h2 class="section-title">Works</h2>
+      <div class="section-line"></div>
+    </header>
+
+    <div class="works-list">
+      {projects.map((p, i) => (
+        <article
+          class={`project-card${p.featured ? ' project-card--featured' : ''}`}
+          data-animate
+          data-animate-delay={String((i % 2) + 1)}
+        >
+          <div class="project-meta">
+            <span class="project-num">{p.num}.</span>
+            <span class="project-category">{p.category}</span>
+            <span class="project-period">{p.period}</span>
+          </div>
+          <h3 class="project-title">{p.title}</h3>
+          <p class="project-description">{p.description}</p>
+          <div class="project-footer">
+            <div class="project-tech">
+              {p.tech.map(t => <span class="tech-tag">{t}</span>)}
+            </div>
+            {p.links.length > 0 && (
+              <div class="project-links">
+                {p.links.map(link => (
+                  <a href={link.href} target="_blank" rel="noopener noreferrer" class="project-link">
+                    {link.label} ↗
+                  </a>
+                ))}
+              </div>
+            )}
+          </div>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .works-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    padding: 2rem;
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    transition: border-color 0.25s, transform 0.25s;
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+  }
+  .project-card:hover {
+    border-color: rgba(100, 255, 218, 0.25);
+    transform: translateY(-3px);
+  }
+  .project-card--featured {
+    grid-column: span 2;
+    border-color: rgba(100, 255, 218, 0.15);
+  }
+
+  .project-meta {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .project-num {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    font-size: 0.75rem;
+    color: var(--accent);
+  }
+  .project-category {
+    font-size: 0.72rem;
+    color: var(--text-secondary);
+    letter-spacing: 0.05em;
+  }
+  .project-period {
+    font-size: 0.72rem;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--text-secondary);
+    margin-left: auto;
+  }
+
+  .project-title {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.35;
+    transition: color 0.2s;
+  }
+  .project-card:hover .project-title { color: var(--accent); }
+
+  .project-description {
+    font-size: 0.875rem;
+    line-height: 1.75;
+    color: var(--text-secondary);
+    flex: 1;
+  }
+
+  .project-footer {
+    display: flex;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-top: 0.5rem;
+  }
+
+  .project-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tech-tag {
+    font-size: 0.72rem;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--accent);
+    background: rgba(100, 255, 218, 0.06);
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+
+  .project-links {
+    display: flex;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
+  .project-link {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .project-link:hover { color: var(--accent); }
+
+  @media (max-width: 768px) {
+    .works-list { grid-template-columns: 1fr; }
+    .project-card--featured { grid-column: span 1; }
+  }
+</style>

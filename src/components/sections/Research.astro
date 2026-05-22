@@ -1,0 +1,293 @@
+---
+const awards = [
+  {
+    title: 'ICCE 2025 Best Session Presentation Award',
+    org: 'IEEE International Conference on Consumer Electronics',
+    year: 'Jan. 2025',
+  },
+  {
+    title: 'Graduate School Academic Excellence Award',
+    org: 'Waseda University — Dept. of Computer Science and Communications Engineering',
+    year: '2025',
+  },
+  {
+    title: 'IPSJ Design Gaia 2025 Best Poster Award',
+    org: 'Information Processing Society of Japan',
+    year: 'Dec. 2025',
+  },
+];
+
+const papers = [
+  {
+    type: 'Journal',
+    title:
+      'An Ising Machine Approach to the Personalized Course Selection Problem',
+    authors: 'T. Ota, K. Fukada, and N. Togawa',
+    venue: 'IEEE Access, vol.13, pp. 152148–152160, 2025.',
+    doi: 'https://doi.org/10.1109/ACCESS.2025.3603606',
+  },
+  {
+    type: 'Int\'l Conf.',
+    title:
+      'Hybrid Quantum-Classical Framework based on subQUBO and pVSQA',
+    authors: 'T. Ota, T. Shirai, M. Morita, K. Kimura, Y. Takita, and N. Togawa',
+    venue: 'APS Global Physics Summit 2026.',
+    doi: null,
+  },
+  {
+    type: 'Int\'l Conf.',
+    title:
+      'Course Selection Optimization using pVSQA on Quantum Computers',
+    authors: 'T. Ota, T. Shirai, and N. Togawa',
+    venue: 'IEEE ICCE-Berlin 2025, pp. 207–210.',
+    doi: 'https://doi.org/10.1109/ICCE-Berlin67488.2025.11277633',
+  },
+  {
+    type: 'Int\'l Conf.',
+    title:
+      'Evaluating pVSQA for Large-Sized Constrained Optimization on Quantum Simulator',
+    authors: 'T. Ota et al.',
+    venue: 'IEEE QCE 2025, vol.02, pp. 396–397.',
+    doi: 'https://doi.org/10.1109/QCE65121.2025.10363',
+  },
+];
+---
+
+<section class="section" id="research">
+  <div class="container">
+    <header class="section-header" data-animate>
+      <span class="section-num">04.</span>
+      <h2 class="section-title">Research</h2>
+      <div class="section-line"></div>
+    </header>
+
+    <div class="research-layout">
+      <!-- Overview -->
+      <div class="research-overview" data-animate>
+        <h3 class="overview-title">
+          Quantum Computing for Combinatorial Optimization
+        </h3>
+        <p>
+          My research addresses how quantum computers can solve combinatorial
+          optimization problems that are computationally intractable for classical
+          machines. I formalized <em>personalized course selection</em> as a new
+          NP-hard optimization problem, proposed the first quantum-based
+          model for it, and developed a hybrid quantum-classical algorithm —
+          <strong>pVSQA</strong> — that successfully solved instances of up
+          to <span class="highlight">500 variables</span> on a gate-model
+          quantum computer, a scale record in the field.
+        </p>
+        <p>
+          In my master's research, I collaborated with the
+          <strong>Quantum Laboratory, Fujitsu Research</strong> on
+          large-scale optimization benchmarks using subQUBO decomposition
+          combined with variational quantum algorithms.
+        </p>
+        <p class="research-stats">
+          <span class="stat"><span class="stat-num">2</span> journal papers</span>
+          <span class="stat-sep">/</span>
+          <span class="stat"><span class="stat-num">9</span> international conferences</span>
+          <span class="stat-sep">/</span>
+          <span class="stat"><span class="stat-num">9</span> domestic conferences</span>
+        </p>
+        <a
+          href="https://ieeexplore.ieee.org/author/308719292671247"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="ieee-link"
+        >
+          IEEE Author Profile ↗
+        </a>
+      </div>
+
+      <!-- Right column: awards + papers -->
+      <div class="research-right">
+        <!-- Awards -->
+        <div class="awards" data-animate data-animate-delay="2">
+          <h4 class="sub-heading">Awards</h4>
+          <ul class="award-list">
+            {awards.map(a => (
+              <li class="award-item">
+                <div class="award-dot"></div>
+                <div>
+                  <p class="award-title">{a.title}</p>
+                  <p class="award-org">{a.org} · {a.year}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <!-- Selected Publications -->
+        <div class="publications" data-animate data-animate-delay="3">
+          <h4 class="sub-heading">Selected Publications</h4>
+          <ul class="paper-list">
+            {papers.map(p => (
+              <li class="paper-item">
+                <span class="paper-type">{p.type}</span>
+                <div class="paper-body">
+                  {p.doi
+                    ? <a href={p.doi} target="_blank" rel="noopener noreferrer" class="paper-title">{p.title} ↗</a>
+                    : <p class="paper-title">{p.title}</p>
+                  }
+                  <p class="paper-meta">{p.authors} — {p.venue}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .research-layout {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 5rem;
+    align-items: start;
+  }
+
+  /* Overview */
+  .overview-title {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 1.25rem;
+    line-height: 1.4;
+  }
+  .research-overview p {
+    font-size: 0.925rem;
+    line-height: 1.85;
+    color: var(--text-secondary);
+    margin-bottom: 1rem;
+  }
+  .research-overview em { font-style: italic; }
+  .research-overview strong { color: var(--text-primary); font-weight: 500; }
+  .highlight { color: var(--accent); font-weight: 600; }
+
+  .research-stats {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 1.25rem !important;
+  }
+  .stat { font-size: 0.85rem; color: var(--text-secondary); }
+  .stat-num {
+    font-size: 1.5rem;
+    font-weight: 600;
+    color: var(--accent);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    line-height: 1;
+  }
+  .stat-sep { color: var(--border); }
+
+  .ieee-link {
+    font-size: 0.82rem;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--accent);
+    transition: opacity 0.2s;
+  }
+  .ieee-link:hover { opacity: 0.7; }
+
+  /* Right column */
+  .research-right {
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+  }
+
+  .sub-heading {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--accent);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    margin-bottom: 1rem;
+  }
+
+  /* Awards */
+  .award-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .award-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.75rem;
+  }
+  .award-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    margin-top: 0.45rem;
+    flex-shrink: 0;
+  }
+  .award-title {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    line-height: 1.4;
+    margin-bottom: 0.15rem;
+  }
+  .award-org {
+    font-size: 0.77rem;
+    color: var(--text-secondary);
+  }
+
+  /* Papers */
+  .paper-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1.1rem;
+  }
+  .paper-item {
+    display: grid;
+    grid-template-columns: 5.5rem 1fr;
+    gap: 0.75rem;
+    align-items: start;
+    padding-bottom: 1.1rem;
+    border-bottom: 1px solid var(--border);
+  }
+  .paper-item:last-child { border-bottom: none; padding-bottom: 0; }
+  .paper-type {
+    font-size: 0.68rem;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--accent);
+    background: rgba(100, 255, 218, 0.07);
+    padding: 0.2rem 0.4rem;
+    border-radius: 2px;
+    white-space: nowrap;
+    text-align: center;
+    margin-top: 0.1rem;
+    display: block;
+  }
+  .paper-title {
+    font-size: 0.82rem;
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin-bottom: 0.25rem;
+    transition: color 0.2s;
+  }
+  a.paper-title:hover { color: var(--accent); }
+  .paper-meta {
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
+  @media (max-width: 900px) {
+    .research-layout {
+      grid-template-columns: 1fr;
+      gap: 3rem;
+    }
+  }
+</style>

@@ -35,6 +35,22 @@ const {
       <slot />
     </main>
 
+    <!-- Scroll animation -->
+    <script is:inline>
+      const _observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((e) => {
+            if (e.isIntersecting) {
+              e.target.classList.add('is-visible');
+              _observer.unobserve(e.target);
+            }
+          });
+        },
+        { threshold: 0.12 }
+      );
+      document.querySelectorAll('[data-animate]').forEach((el) => _observer.observe(el));
+    </script>
+
     <script
       is:inline
       src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"
