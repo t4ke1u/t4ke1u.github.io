@@ -1,4 +1,10 @@
 ---
+import { ui, type Lang } from '../i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = ui[lang].nav;
+
 const navLinks = [
   { href: '#about',    label: 'About'    },
   { href: '#skills',   label: 'Skills'   },
@@ -10,7 +16,7 @@ const navLinks = [
 
 <nav class="nav" id="nav">
   <div class="nav-inner">
-    <a href="/" class="nav-logo">Portfolio</a>
+    <a href={lang === 'ja' ? '/' : '/en/'} class="nav-logo">Portfolio</a>
 
     <ul class="nav-links">
       {navLinks.map(({ href, label }) => (
@@ -18,11 +24,16 @@ const navLinks = [
       ))}
     </ul>
 
-    <button class="hamburger" aria-label="メニューを開く" aria-expanded="false">
-      <span></span>
-      <span></span>
-      <span></span>
-    </button>
+    <div class="nav-right">
+      <a href={t.langHref} class="lang-toggle" aria-label="Switch language">
+        {t.langLabel}
+      </a>
+      <button class="hamburger" aria-label="メニューを開く" aria-expanded="false">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
   </div>
 
   <div class="mobile-menu" aria-hidden="true">
@@ -30,6 +41,11 @@ const navLinks = [
       {navLinks.map(({ href, label }) => (
         <li><a href={href} class="mobile-link">{label}</a></li>
       ))}
+      <li>
+        <a href={t.langHref} class="mobile-link mobile-link--lang">
+          {t.langLabel}
+        </a>
+      </li>
     </ul>
   </div>
 </nav>
@@ -57,9 +73,8 @@ const navLinks = [
     justify-content: space-between;
   }
 
-  /* Logo */
   .nav-logo {
-    font-size: var(--fs-body);      /* 14pt 本文 */
+    font-size: var(--fs-body);
     font-weight: 600;
     color: var(--accent);
     letter-spacing: 0.08em;
@@ -67,14 +82,13 @@ const navLinks = [
   }
   .nav-logo:hover { opacity: 0.8; }
 
-  /* Desktop links */
   .nav-links {
     display: flex;
     gap: 2.5rem;
   }
 
   .nav-link {
-    font-size: var(--fs-body-sm);   /* 10pt 本文（小さめ） */
+    font-size: var(--fs-body-sm);
     font-weight: 400;
     color: var(--text-secondary);
     letter-spacing: 0.06em;
@@ -91,14 +105,31 @@ const navLinks = [
     background: var(--accent);
     transition: width 0.25s ease;
   }
-  .nav-link:hover {
-    color: var(--accent);
-  }
-  .nav-link:hover::after {
-    width: 100%;
+  .nav-link:hover { color: var(--accent); }
+  .nav-link:hover::after { width: 100%; }
+
+  /* Right side: lang toggle + hamburger */
+  .nav-right {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
   }
 
-  /* Hamburger button */
+  .lang-toggle {
+    font-size: var(--fs-body-sm);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--text-secondary);
+    border: 1px solid rgba(168, 178, 216, 0.25);
+    border-radius: 3px;
+    padding: 0.2rem 0.55rem;
+    letter-spacing: 0.08em;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .lang-toggle:hover {
+    color: var(--accent);
+    border-color: var(--accent);
+  }
+
   .hamburger {
     display: none;
     flex-direction: column;
@@ -123,7 +154,6 @@ const navLinks = [
   .hamburger.is-open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
   .hamburger.is-open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  /* Mobile menu */
   .mobile-menu {
     display: none;
     overflow: hidden;
@@ -132,9 +162,7 @@ const navLinks = [
     border-top: 1px solid rgba(168, 178, 216, 0.08);
     background: rgba(8, 12, 20, 0.96);
   }
-  .mobile-menu.is-open {
-    max-height: 320px;
-  }
+  .mobile-menu.is-open { max-height: 360px; }
 
   .mobile-links {
     padding: 1rem 2rem 1.75rem;
@@ -146,7 +174,7 @@ const navLinks = [
   .mobile-link {
     display: block;
     padding: 0.65rem 0;
-    font-size: var(--fs-body);      /* 14pt 本文 */
+    font-size: var(--fs-body);
     font-weight: 400;
     color: var(--text-secondary);
     letter-spacing: 0.06em;
@@ -157,8 +185,11 @@ const navLinks = [
     color: var(--accent);
     padding-left: 0.5rem;
   }
-  .mobile-links li:last-child .mobile-link {
-    border-bottom: none;
+  .mobile-links li:last-child .mobile-link { border-bottom: none; }
+
+  .mobile-link--lang {
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--accent);
   }
 
   @media (max-width: 768px) {
@@ -179,7 +210,7 @@ const navLinks = [
     if (mobileMenu) mobileMenu.setAttribute('aria-hidden', String(!isOpen));
   });
 
-  document.querySelectorAll('.mobile-link').forEach(link => {
+  document.querySelectorAll('.mobile-link:not(.mobile-link--lang)').forEach(link => {
     link.addEventListener('click', () => {
       hamburger?.classList.remove('is-open');
       mobileMenu?.classList.remove('is-open');

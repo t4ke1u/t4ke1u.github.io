@@ -1,22 +1,23 @@
 ---
+import { ui, type Lang } from '../../i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = ui[lang].contact;
 ---
+
 <section class="section" id="contact">
   <div class="container">
     <header class="section-header" data-animate>
-      <span class="section-num">05.</span>
-      <h2 class="section-title">Contact</h2>
+      <span class="section-num">{t.sectionNum}</span>
+      <h2 class="section-title">{t.sectionTitle}</h2>
       <div class="section-line"></div>
     </header>
 
     <div class="contact-body" data-animate>
-      <p class="contact-eyebrow">What's next?</p>
-      <h3 class="contact-heading">Get In Touch</h3>
-      <p class="contact-description">
-        I'm currently based in Japan working at Sony Honda Mobility, and I'm
-        always open to discussing interesting engineering challenges, research
-        collaborations, or just connecting with fellow engineers.
-        My inbox is open — feel free to reach out.
-      </p>
+      <p class="contact-eyebrow">{t.eyebrow}</p>
+      <h3 class="contact-heading">{t.heading}</h3>
+      <p class="contact-description">{t.description}</p>
       <div class="contact-actions">
         <a
           href="https://github.com/t4ke1u"
@@ -24,9 +25,9 @@
           rel="noopener noreferrer"
           class="btn btn--primary"
         >
-          GitHub ↗
+          {t.ctaGithub}
         </a>
-        <a href="mailto:" class="btn btn--outline">Say Hello</a>
+        <a href="mailto:" class="btn btn--outline">{t.ctaSayHello}</a>
       </div>
     </div>
   </div>
@@ -41,7 +42,7 @@
   }
 
   .contact-eyebrow {
-    font-size: var(--fs-body-sm);   /* 10pt 本文（小さめ） */
+    font-size: var(--fs-body-sm);
     font-family: 'SF Mono', 'Fira Code', monospace;
     color: var(--accent);
     letter-spacing: 0.1em;
@@ -49,7 +50,7 @@
   }
 
   .contact-heading {
-    font-size: var(--fs-h1);        /* 24pt 大見出し */
+    font-size: var(--fs-h1);
     font-weight: 600;
     color: var(--text-primary);
     margin-bottom: 1.5rem;
@@ -57,7 +58,7 @@
   }
 
   .contact-description {
-    font-size: var(--fs-body);      /* 14pt 本文 */
+    font-size: var(--fs-body);
     line-height: 1.8;
     color: var(--text-secondary);
     margin-bottom: 2.5rem;

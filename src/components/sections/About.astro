@@ -1,76 +1,26 @@
 ---
-const timeline = [
-  {
-    date: '2026.04',
-    title: 'Sony Honda Mobility Inc.',
-    sub: 'Software Engineer — Mobile App Development Team',
-    accent: true,
-  },
-  {
-    date: '2026.03',
-    title: 'Waseda University, M.Eng.',
-    sub: 'Graduate School of Fundamental Science and Engineering',
-  },
-  {
-    date: '2025.01',
-    title: 'ICCE 2025 Best Session Presentation Award',
-    sub: 'IEEE International Conference on Consumer Electronics',
-    accent: true,
-  },
-  {
-    date: '2024.04',
-    title: 'Waseda University Graduate School',
-    sub: 'Research on quantum combinatorial optimization algorithms',
-  },
-  {
-    date: '2023.05',
-    title: 'Quanmatic Inc. — Long-term Intern',
-    sub: 'Full-stack development: FastAPI · Next.js · AWS · UI/UX',
-  },
-  {
-    date: '2022.09',
-    title: 'Riko-ten IT Division Lead',
-    sub: 'Led 30+ member team: requirements → development → release',
-  },
-  {
-    date: '2020.04',
-    title: 'Waseda University, B.Eng.',
-    sub: 'Department of Computer Science and Communications Engineering',
-  },
-];
+import { ui, type Lang } from '../../i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = ui[lang].about;
 ---
 
 <section class="section" id="about">
   <div class="container">
     <header class="section-header" data-animate>
-      <span class="section-num">01.</span>
-      <h2 class="section-title">About</h2>
+      <span class="section-num">{t.sectionNum}</span>
+      <h2 class="section-title">{t.sectionTitle}</h2>
       <div class="section-line"></div>
     </header>
 
     <div class="about-layout">
       <div class="about-text" data-animate>
-        <p>
-          I'm a software engineer at <span class="highlight">Sony Honda Mobility</span>, working on
-          the mobile app development team. I hold a Master's degree in Computer Science from
-          Waseda University, where I researched quantum computing algorithms for combinatorial
-          optimization.
-        </p>
-        <p>
-          During my graduate studies, I simultaneously worked as a long-term intern at
-          <span class="highlight">Quanmatic</span> — a university spin-off — where I built
-          production systems spanning backend APIs, cloud infrastructure, frontend UIs,
-          and UI/UX design end-to-end.
-        </p>
-        <p>
-          I care about connecting new technology to real problems. My research showed that
-          quantum-classical hybrid algorithms can solve optimization problems at scales
-          previously out of reach — and I bring that same mindset to product engineering.
-        </p>
+        {t.body.map(para => <p set:html={para} />)}
       </div>
 
       <div class="timeline" data-animate data-animate-delay="2">
-        {timeline.map((item) => (
+        {t.timeline.map((item) => (
           <div class={`timeline-item${item.accent ? ' timeline-item--accent' : ''}`}>
             <span class="timeline-date">{item.date}</span>
             <div class="timeline-dot"></div>
@@ -99,16 +49,15 @@ const timeline = [
     gap: 1.25rem;
   }
   .about-text p {
-    font-size: var(--fs-body);      /* 14pt 本文 */
+    font-size: var(--fs-body);
     line-height: 1.85;
     color: var(--text-secondary);
   }
-  .highlight {
+  :global(.highlight) {
     color: var(--accent);
     font-weight: 500;
   }
 
-  /* Timeline */
   .timeline {
     display: flex;
     flex-direction: column;
@@ -129,7 +78,7 @@ const timeline = [
   .timeline-item:last-child { padding-bottom: 0; }
 
   .timeline-date {
-    font-size: var(--fs-body-sm);   /* 10pt 本文（小さめ） */
+    font-size: var(--fs-body-sm);
     font-family: 'SF Mono', 'Fira Code', monospace;
     color: var(--text-secondary);
     padding-top: 0.15rem;
@@ -151,14 +100,14 @@ const timeline = [
   .timeline-item--accent .timeline-dot { background: var(--accent); }
 
   .timeline-title {
-    font-size: var(--fs-h3);        /* 14pt 小見出し */
+    font-size: var(--fs-h3);
     font-weight: 500;
     color: var(--text-primary);
     line-height: 1.4;
     margin-bottom: 0.2rem;
   }
   .timeline-sub {
-    font-size: var(--fs-body-md);   /* 12pt 本文（中サイズ） */
+    font-size: var(--fs-body-md);
     color: var(--text-secondary);
     line-height: 1.5;
   }

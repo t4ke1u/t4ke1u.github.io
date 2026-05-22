@@ -1,9 +1,15 @@
 ---
+import { ui, type Lang } from '../i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = ui[lang].footer;
 ---
+
 <footer class="footer">
   <div class="footer-inner">
     <p class="footer-credit">
-      Designed &amp; Built by <span>Takeru Ota</span>
+      {t.credit} <span>Takeru Ota</span>
     </p>
     <a
       href="https://github.com/t4ke1u"
@@ -37,7 +43,7 @@
     flex-wrap: wrap;
   }
   .footer-credit {
-    font-size: var(--fs-body-sm);   /* 10pt 本文（小さめ） */
+    font-size: var(--fs-body-sm);
     color: var(--text-secondary);
   }
   .footer-credit span { color: var(--accent); }
@@ -46,7 +52,7 @@
     display: flex;
     align-items: center;
     gap: 0.4rem;
-    font-size: var(--fs-body-sm);   /* 10pt 本文（小さめ） */
+    font-size: var(--fs-body-sm);
     font-family: 'SF Mono', 'Fira Code', monospace;
     color: var(--text-secondary);
     transition: color 0.2s;

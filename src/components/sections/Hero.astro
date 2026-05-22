@@ -1,20 +1,28 @@
 ---
+import { ui, type Lang } from '../../i18n';
+
+interface Props { lang: Lang; }
+const { lang } = Astro.props;
+const t = ui[lang].hero;
+
+const taglineLines = t.tagline.split('\n');
 ---
+
 <section class="hero" id="home">
-  <p class="hero-greeting" data-animate data-animate-delay="1">Hi, my name is</p>
-  <h1 class="hero-name" data-animate data-animate-delay="2">Takeru Ota.</h1>
+  <p class="hero-greeting" data-animate data-animate-delay="1">{t.greeting}</p>
+  <h1 class="hero-name" data-animate data-animate-delay="2">{t.name}</h1>
   <h2 class="hero-tagline" data-animate data-animate-delay="3">
-    I build full-stack systems —<br />
-    from quantum circuits to mobile apps.
+    {taglineLines.map((line, i) => (
+      <>
+        {line}
+        {i < taglineLines.length - 1 && <br />}
+      </>
+    ))}
   </h2>
-  <p class="hero-description" data-animate data-animate-delay="4">
-    Software engineer at Sony Honda Mobility, M.Eng. from Waseda University.
-    Bridging quantum computing research and real-world product engineering
-    across backend, frontend, cloud, and mobile.
-  </p>
+  <p class="hero-description" data-animate data-animate-delay="4">{t.description}</p>
   <div class="hero-actions" data-animate data-animate-delay="5">
-    <a href="#works" class="btn btn--primary">View my work</a>
-    <a href="#contact" class="btn btn--outline">Get in touch</a>
+    <a href="#works"   class="btn btn--primary">{t.ctaWork}</a>
+    <a href="#contact" class="btn btn--outline">{t.ctaContact}</a>
   </div>
 </section>
 
@@ -30,7 +38,7 @@
   }
 
   .hero-greeting {
-    font-size: var(--fs-body-sm);   /* 10pt 本文（小さめ） */
+    font-size: var(--fs-body-sm);
     font-weight: 400;
     color: var(--accent);
     font-family: 'SF Mono', 'Fira Code', monospace;
@@ -39,7 +47,7 @@
   }
 
   .hero-name {
-    font-size: var(--fs-title);     /* 32pt タイトル */
+    font-size: var(--fs-title);
     font-weight: 700;
     color: var(--text-primary);
     line-height: 1.05;
@@ -48,7 +56,7 @@
   }
 
   .hero-tagline {
-    font-size: var(--fs-h1);        /* 24pt 大見出し */
+    font-size: var(--fs-h1);
     font-weight: 500;
     color: var(--text-secondary);
     line-height: 1.25;
@@ -58,7 +66,7 @@
 
   .hero-description {
     max-width: 520px;
-    font-size: var(--fs-body);      /* 14pt 本文 */
+    font-size: var(--fs-body);
     line-height: 1.8;
     color: var(--text-secondary);
     margin-bottom: 3rem;
