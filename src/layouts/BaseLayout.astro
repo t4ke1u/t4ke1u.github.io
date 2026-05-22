@@ -30,6 +30,15 @@ const {
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+    <!-- テーマ初期化（描画前に実行してFOUCを防止） -->
+    <script is:inline>
+      (function () {
+        var stored = localStorage.getItem('theme');
+        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+        var theme = stored || (prefersDark ? 'dark' : 'light');
+        document.documentElement.setAttribute('data-theme', theme);
+      })();
+    </script>
   </head>
   <body>
     <div id="particles-js"></div>
@@ -59,14 +68,16 @@ const {
       src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"
     ></script>
     <script is:inline>
-      window.addEventListener('load', function () {
-        particlesJS('particles-js', {
+      /* ---- particles.js theme-aware initialization ---- */
+      function buildParticlesConfig(isDark) {
+        var color = isDark ? '#a8b2d8' : '#94a3b8';
+        return {
           particles: {
             number: { value: 55, density: { enable: true, value_area: 900 } },
-            color: { value: '#a8b2d8' },
+            color: { value: color },
             shape: { type: 'circle' },
             opacity: {
-              value: 0.35,
+              value: isDark ? 0.35 : 0.45,
               random: true,
               anim: { enable: true, speed: 0.8, opacity_min: 0.05, sync: false },
             },
@@ -74,18 +85,13 @@ const {
             line_linked: {
               enable: true,
               distance: 140,
-              color: '#a8b2d8',
-              opacity: 0.18,
+              color: color,
+              opacity: isDark ? 0.18 : 0.22,
               width: 1,
             },
             move: {
-              enable: true,
-              speed: 1.2,
-              direction: 'none',
-              random: true,
-              straight: false,
-              out_mode: 'out',
-              bounce: false,
+              enable: true, speed: 1.2, direction: 'none',
+              random: true, straight: false, out_mode: 'out', bounce: false,
             },
           },
           interactivity: {
@@ -101,8 +107,22 @@ const {
             },
           },
           retina_detect: true,
-        });
-      });
+        };
+      }
+
+      function initParticles() {
+        var isDark = document.documentElement.getAttribute('data-theme') !== 'light';
+        if (window.pJSDom && window.pJSDom.length > 0) {
+          window.pJSDom[0].pJS.fn.vendors.destroypJS();
+          window.pJSDom = [];
+        }
+        particlesJS('particles-js', buildParticlesConfig(isDark));
+      }
+
+      window.addEventListener('load', initParticles);
+
+      /* テーマ変更イベントを受け取ってparticlesを再初期化 */
+      window.addEventListener('theme-change', initParticles);
     </script>
   </body>
 </html>

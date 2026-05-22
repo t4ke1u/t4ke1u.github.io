@@ -5,12 +5,15 @@
 }
 
 :root {
-  --bg: #080c14;
-  --bg-card: rgba(13, 17, 28, 0.7);
-  --text-primary: #ccd6f6;
+  /* ── Dark mode (default) ── */
+  --bg:          #080c14;
+  --bg-card:     rgba(13, 17, 28, 0.7);
+  --text-primary:   #ccd6f6;
   --text-secondary: #8892b0;
-  --accent: #64ffda;
-  --border: rgba(168, 178, 216, 0.1);
+  --accent:      #64ffda;
+  --border:      rgba(168, 178, 216, 0.10);
+  --nav-bg:      rgba(8, 12, 20, 0.82);
+  --particle-color: #a8b2d8;
   --nav-height: 70px;
   --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
 
@@ -31,6 +34,38 @@
   --fs-h3:       0.875rem;   /* 14pt  小見出し        */
   --fs-body-sm:  0.625rem;   /* 10pt  本文（小さめ）  */
 }
+
+/* ── Light mode ─────────────────────────────────── */
+[data-theme="light"] {
+  --bg:          #f4f6f9;
+  --bg-card:     rgba(255, 255, 255, 0.85);
+  --text-primary:   #111827;
+  --text-secondary: #6b7280;
+  --accent:      #0d9488;
+  --border:      rgba(17, 24, 39, 0.10);
+  --nav-bg:      rgba(244, 246, 249, 0.92);
+  --particle-color: #94a3b8;
+}
+
+/* ── Theme switch transition ─────────────────────── */
+.theme-transitioning,
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition:
+    background-color 0.25s ease,
+    color            0.25s ease,
+    border-color     0.25s ease,
+    box-shadow       0.25s ease !important;
+}
+
+/* ── Theme toggle icon visibility ────────────────── */
+/* Dark mode: show sun (= click → go light)  */
+.theme-icon-sun  { display: block; }
+.theme-icon-moon { display: none;  }
+/* Light mode: show moon (= click → go dark) */
+[data-theme="light"] .theme-icon-sun  { display: none;  }
+[data-theme="light"] .theme-icon-moon { display: block; }
 
 html { scroll-behavior: smooth; }
 
