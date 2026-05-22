@@ -27,12 +27,11 @@ const loop2 = [...col2, ...col2];
     <h1 class="hero-name"    data-animate data-animate-delay="2">{t.name}</h1>
     <p class="hero-tagline"  data-animate data-animate-delay="3">{t.tagline}</p>
     <div class="hero-actions" data-animate data-animate-delay="4">
-      <a href="#works"   class="btn btn--primary">{t.ctaWork}</a>
-      <a href="#contact" class="btn btn--outline">{t.ctaContact}</a>
+      <a href="#works" class="btn btn--primary">{t.ctaWork}</a>
     </div>
   </div>
 
-  <div class="hero-photos" id="hero-photos" aria-hidden="true">
+  <div class="hero-photos" aria-hidden="true">
     <div class="photo-col photo-col--down">
       {loop1.map((p) => (
         <div class="photo-item">
@@ -175,49 +174,3 @@ const loop2 = [...col2, ...col2];
   }
 </style>
 
-<script>
-  const photosEl = document.getElementById('hero-photos');
-  if (photosEl) {
-    const cols = [...photosEl.querySelectorAll<HTMLElement>('.photo-col')];
-    let rafId: number | null = null;
-
-    function getAnims(): Animation[] {
-      return cols.flatMap(col => col.getAnimations());
-    }
-
-    function tweenRate(target: number, ms = 600) {
-      if (rafId !== null) cancelAnimationFrame(rafId);
-
-      const anims = getAnims();
-      if (!anims.length) return;
-
-      // resume before tweening to non-zero so currentTime advances
-      if (target > 0) anims.forEach(a => { a.playbackRate = 0; a.play(); });
-
-      const starts = anims.map(a => a.playbackRate);
-      const t0 = performance.now();
-
-      function tick(now: number) {
-        const p = Math.min((now - t0) / ms, 1);
-        // easeInOut for natural feel
-        const ease = p < 0.5 ? 2 * p * p : 1 - Math.pow(-2 * p + 2, 2) / 2;
-
-        anims.forEach((a, i) => {
-          a.playbackRate = starts[i] + (target - starts[i]) * ease;
-        });
-
-        if (p < 1) {
-          rafId = requestAnimationFrame(tick);
-        } else {
-          rafId = null;
-          if (target === 0) anims.forEach(a => a.pause());
-        }
-      }
-
-      rafId = requestAnimationFrame(tick);
-    }
-
-    photosEl.addEventListener('mouseenter', () => tweenRate(0));
-    photosEl.addEventListener('mouseleave', () => tweenRate(1));
-  }
-</script>

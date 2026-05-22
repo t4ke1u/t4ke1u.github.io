@@ -4,6 +4,28 @@ import { ui, type Lang } from '../../i18n';
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const t = ui[lang].skills;
+
+const ICONS: Record<string, string> = {
+  'HTML / CSS':        'html5',
+  'TypeScript':        'typescript',
+  'React / Next.js':   'react',
+  'Swift / SwiftUI':   'swift',
+  'Flutter / Dart':    'flutter',
+  'Kotlin / KMP':      'kotlin',
+  'Python / FastAPI':  'python',
+  'PostgreSQL':        'postgresql',
+  'PHP / WordPress':   'php',
+  'Java':              'openjdk',
+  'Docker':            'docker',
+  'Linux':             'linux',
+  'Google Cloud':      'googlecloud',
+  'Qiskit':            'qiskit',
+  'PyTorch':           'pytorch',
+  'Figma / UI&UX':     'figma',
+  'Git / GitHub':      'github',
+  'Jira / Confluence': 'jira',
+  'C':                 'c',
+};
 ---
 
 <section class="section" id="skills">
@@ -21,6 +43,17 @@ const t = ui[lang].skills;
           <div class="skill-tags">
             {cat.skills.map(skill => (
               <span class="tag">
+                {ICONS[skill.name] && (
+                  <img
+                    class="skill-icon"
+                    src={`https://cdn.simpleicons.org/${ICONS[skill.name]}`}
+                    alt=""
+                    width="14"
+                    height="14"
+                    aria-hidden="true"
+                    loading="lazy"
+                  />
+                )}
                 {skill.name}
                 {skill.years && <span class="tag-years">{skill.years}</span>}
               </span>
@@ -82,4 +115,17 @@ const t = ui[lang].skills;
 
   @media (max-width: 900px) { .skills-grid { grid-template-columns: repeat(2, 1fr); } }
   @media (max-width: 560px) { .skills-grid { grid-template-columns: 1fr; } }
+</style>
+
+<style is:global>
+  .skill-icon {
+    width: 14px;
+    height: 14px;
+    flex-shrink: 0;
+    /* grayscale → invert で暗いアイコンを明るく反転 */
+    filter: grayscale(1) invert(1) opacity(0.65);
+  }
+  [data-theme="light"] .skill-icon {
+    filter: grayscale(1) opacity(0.55);
+  }
 </style>

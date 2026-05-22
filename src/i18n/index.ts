@@ -8,7 +8,7 @@ export const ui = {
     },
     hero: {
       greeting: 'Software Engineer',
-      name: '太田 岳',
+      name: 'Takeru Ota',
       tagline: 'Sony Honda Mobility  /  Waseda University, M.Eng.',
       ctaWork: '実績を見る',
       ctaContact: 'お問い合わせ',

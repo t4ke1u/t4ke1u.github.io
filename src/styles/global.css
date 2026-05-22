@@ -10,7 +10,7 @@
   --bg-card:     rgba(13, 17, 28, 0.7);
   --text-primary:   #ccd6f6;
   --text-secondary: #8892b0;
-  --accent:      #64ffda;
+  --accent:      #5bc8ff;
   --border:      rgba(168, 178, 216, 0.10);
   --nav-bg:      rgba(8, 12, 20, 0.82);
   --particle-color: #a8b2d8;
@@ -41,7 +41,7 @@
   --bg-card:     rgba(255, 255, 255, 0.85);
   --text-primary:   #111827;
   --text-secondary: #6b7280;
-  --accent:      #0d9488;
+  --accent:      #0284c7;
   --border:      rgba(17, 24, 39, 0.10);
   --nav-bg:      rgba(244, 246, 249, 0.92);
   --particle-color: #94a3b8;
@@ -141,7 +141,7 @@ ul { list-style: none; }
   border: 1px solid var(--accent);
   color: var(--accent);
 }
-.btn--primary:hover { background: rgba(100, 255, 218, 0.08); }
+.btn--primary:hover { background: rgba(91, 200, 255, 0.08); }
 .btn--outline {
   border: 1px solid var(--text-secondary);
   color: var(--text-secondary);
