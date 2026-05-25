@@ -189,8 +189,10 @@ const navLinks = [
 
   .theme-btn {
     width: 34px;
-    background: none;
-    border: 1px solid var(--border);
+    background: var(--pill-bg);
+    border: 1px solid var(--pill-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
   .theme-btn:hover { border-color: var(--accent); background: var(--pill-link-hover-bg); }
 
@@ -199,8 +201,10 @@ const navLinks = [
     font-size: var(--fs-body-sm);
     font-family: 'SF Mono', 'Fira Code', monospace;
     letter-spacing: 0.08em;
-    background: none;
-    border: 1px solid var(--border);
+    background: var(--pill-bg);
+    border: 1px solid var(--pill-border);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
   }
   .lang-btn:hover { border-color: var(--accent); background: var(--pill-link-hover-bg); }
 
@@ -214,11 +218,13 @@ const navLinks = [
     width: 34px;
     height: 34px;
     padding: 0;
-    background: none;
-    border: 1px solid var(--border);
+    background: var(--pill-bg);
+    border: 1px solid var(--pill-border);
     border-radius: 9999px;
     cursor: pointer;
     color: var(--text-secondary);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
     transition: color 0.2s, border-color 0.2s, background 0.2s;
   }
   .hamburger:hover {
