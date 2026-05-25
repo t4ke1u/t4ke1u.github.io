@@ -96,7 +96,7 @@ export const ui = {
           title: '個人化履修選択最適化システム',
           period: '2022 — 2026',
           description:
-            '大学生の履修選択を量子組合せ最適化問題として初めて学術的にモデル化。量子・古典ハイブリッドアルゴリズムを開発し、ゲート式量子コンピュータで500変数のインスタンスを求解することに成功。本分野における規模の記録を達成。',
+            '大学生の履修選択を量子組合せ最適化問題として初めて学術的にモデル化。pVSQAを適用した量子・古典ハイブリッドアプローチを提案し、ゲート式量子コンピュータで500変数のインスタンスを求解することに成功。本分野における規模の記録を達成。',
           tech: ['Python', 'Qiskit', 'PyTorch', 'Fixstars Amplify', 'FastAPI', 'AWS'],
           links: [
             { label: 'GitHub', href: 'https://github.com/t4ke1u/qlasop-app' },
@@ -155,7 +155,7 @@ export const ui = {
       sectionTitle: 'Research',
       overviewTitle: '量子コンピュータを用いた組合せ最適化',
       body: [
-        '私の研究は、古典コンピュータでは計算困難な組合せ最適化問題を量子コンピュータで解くことを目指しています。大学生の履修選択を<em>個人化履修最適化問題</em>として新たにNP困難問題として定式化し、初の量子ベースモデルを提案。量子・古典ハイブリッドアルゴリズム<strong>pVSQA</strong>を開発し、ゲート式量子コンピュータで<span class="highlight">500変数</span>の求解に成功。本分野における規模の記録を達成しました。',
+        '私の研究は、古典コンピュータでは計算困難な組合せ最適化問題を量子コンピュータで解くことを目指しています。大学生の履修選択を<em>個人化履修最適化問題</em>として新たにNP困難問題として定式化し、初の量子ベースモデルを提案。量子・古典ハイブリッドアルゴリズム<strong>pVSQA</strong>を本問題に適用し、ゲート式量子コンピュータで<span class="highlight">500変数</span>の求解に成功。本分野における規模の記録を達成しました。',
         '修士研究では、subQUBO分割と変分量子アルゴリズムを組み合わせた大規模最適化ベンチマークにおいて、<strong>富士通研究所 量子研究所</strong>と共同研究を行いました。',
       ],
       statsNums: [2, 9, 9],
@@ -285,7 +285,7 @@ export const ui = {
           title: 'Personalized Course Selection System',
           period: '2022 — 2026',
           description:
-            "Modeled university course selection as a quantum combinatorial optimization problem for the first time in academic literature. Developed a hybrid quantum-classical algorithm capable of solving 500-variable instances on gate-model quantum computers — a scale record in the domain.",
+            "Modeled university course selection as a quantum combinatorial optimization problem for the first time in academic literature. Proposed a hybrid quantum-classical approach applying pVSQA, and successfully solved 500-variable instances on gate-model quantum computers — a scale record in the domain.",
           tech: ['Python', 'Qiskit', 'PyTorch', 'Fixstars Amplify', 'FastAPI', 'AWS'],
           links: [
             { label: 'GitHub', href: 'https://github.com/t4ke1u/qlasop-app' },
@@ -344,7 +344,7 @@ export const ui = {
       sectionTitle: 'Research',
       overviewTitle: 'Quantum Computing for Combinatorial Optimization',
       body: [
-        "My research addresses how quantum computers can solve combinatorial optimization problems that are computationally intractable for classical machines. I formalized <em>personalized course selection</em> as a new NP-hard optimization problem, proposed the first quantum-based model for it, and developed a hybrid quantum-classical algorithm — <strong>pVSQA</strong> — that successfully solved instances of up to <span class=\"highlight\">500 variables</span> on a gate-model quantum computer, a scale record in the field.",
+        "My research addresses how quantum computers can solve combinatorial optimization problems that are computationally intractable for classical machines. I formalized <em>personalized course selection</em> as a new NP-hard optimization problem, proposed the first quantum-based model for it, and applied the hybrid quantum-classical algorithm <strong>pVSQA</strong> to successfully solve instances of up to <span class=\"highlight\">500 variables</span> on a gate-model quantum computer — a scale record in the field.",
         "In my master's research, I collaborated with the <strong>Quantum Laboratory, Fujitsu Research</strong> on large-scale optimization benchmarks using subQUBO decomposition combined with variational quantum algorithms.",
       ],
       statsNums: [2, 9, 9],
