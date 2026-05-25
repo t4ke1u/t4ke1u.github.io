@@ -1,43 +1,68 @@
-# Astro Starter Kit: Minimal
+# Takeru Ota — Portfolio
 
-```sh
-npm create astro@latest -- --template minimal
+Personal portfolio site for Takeru Ota, Software Engineer at Sony Honda Mobility.
+
+**Live:** https://takeru-ota.vercel.app &nbsp;·&nbsp; **JA** `/` &nbsp;·&nbsp; **EN** `/en/`
+
+---
+
+## Features
+
+- **Bilingual** — Japanese (`/`) and English (`/en/`) with auto-redirect based on `navigator.language`
+- **Dark / Light mode** — follows OS `prefers-color-scheme`; manual toggle persists for the session
+- **Infinite photo carousel** — dual-column CSS-only scroll animation in the Hero section
+- **Particle background** — theme-aware particles.js, re-initialized on theme change
+- **Scroll animations** — `IntersectionObserver`-based fade-in for section content
+- **Responsive** — mobile hamburger menu with frosted-glass backdrop
+
+## Tech Stack
+
+| Layer | Choice |
+|---|---|
+| Framework | [Astro](https://astro.build) 6.x (SSG) |
+| Styling | Scoped CSS + CSS custom properties |
+| i18n | Hand-rolled `ui` object (`src/i18n/index.ts`) |
+| Particles | [particles.js](https://vincentgarreau.com/particles.js/) |
+| Fonts | Inter (Google Fonts) |
+| Deployment | Vercel |
+
+## Project Structure
+
 ```
-
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
-
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
 /
-├── public/
+├── public/                  # Static assets (photos, favicon)
 ├── src/
-│   └── pages/
-│       └── index.astro
+│   ├── components/
+│   │   ├── sections/        # Hero, About, Skills, Works, Research, Footer
+│   │   ├── Footer.astro
+│   │   └── Navigation.astro
+│   ├── i18n/
+│   │   └── index.ts         # All UI strings (ja / en)
+│   ├── layouts/
+│   │   └── BaseLayout.astro # HTML shell, theme init, particles
+│   ├── pages/
+│   │   ├── index.astro      # JA route (/)
+│   │   └── en/index.astro   # EN route (/en/)
+│   └── styles/
+│       └── global.css       # Design tokens, typography, animations
 └── package.json
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## Getting Started
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+```sh
+npm install
+npm run dev       # http://localhost:4321
+```
 
-Any static assets, like images, can be placed in the `public/` directory.
+| Command | Action |
+|---|---|
+| `npm run dev` | Start local dev server |
+| `npm run build` | Build to `./dist/` |
+| `npm run preview` | Preview production build locally |
 
-## 🧞 Commands
+## Adding Content
 
-All commands are run from the root of the project, from a terminal:
+All text content lives in `src/i18n/index.ts`. Each top-level key (`hero`, `about`, `skills`, `works`, `research`) maps to a section component. Both `ja` and `en` objects must be kept in sync.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
-
-## 👀 Want to learn more?
-
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+Photos for the Hero carousel are declared in `src/components/sections/Hero.astro` and served from `public/`.
