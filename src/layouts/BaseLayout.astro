@@ -33,13 +33,13 @@ const {
     <!-- テーマ初期化（描画前に実行してFOUCを防止） -->
     <script is:inline>
       (function () {
-        var stored = localStorage.getItem('theme');
+        var stored = sessionStorage.getItem('theme');
         var mq = window.matchMedia('(prefers-color-scheme: dark)');
         var theme = stored || (mq.matches ? 'dark' : 'light');
         document.documentElement.setAttribute('data-theme', theme);
 
         mq.addEventListener('change', function (e) {
-          if (!localStorage.getItem('theme')) {
+          if (!sessionStorage.getItem('theme')) {
             document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
             window.dispatchEvent(new CustomEvent('theme-change'));
           }

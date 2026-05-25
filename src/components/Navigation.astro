@@ -393,7 +393,7 @@ const navLinks = [
     const next = current === 'dark' ? 'light' : 'dark';
     html.classList.add('theme-transitioning');
     html.setAttribute('data-theme', next);
-    localStorage.setItem('theme', next);
+    sessionStorage.setItem('theme', next);
     window.dispatchEvent(new CustomEvent('theme-change'));
     setTimeout(() => html.classList.remove('theme-transitioning'), 300);
   }
