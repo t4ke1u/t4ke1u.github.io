@@ -75,9 +75,9 @@ const t = ui[lang].works;
     </div>
     <div class="wmodal-body">
       <div class="wmodal-gallery">
-        <Image src={imgFestival1} alt="アプリスクリーンショット1" widths={[300, 600]} sizes="200px" />
-        <Image src={imgFestival2} alt="アプリスクリーンショット2" widths={[300, 600]} sizes="200px" />
-        <Image src={imgFestival3} alt="アプリスクリーンショット3" widths={[300, 600]} sizes="200px" />
+        <Image src={imgFestival1} alt="アプリスクリーンショット1" widths={[300, 600]} sizes="200px" loading="eager" />
+        <Image src={imgFestival2} alt="アプリスクリーンショット2" widths={[300, 600]} sizes="200px" loading="eager" />
+        <Image src={imgFestival3} alt="アプリスクリーンショット3" widths={[300, 600]} sizes="200px" loading="eager" />
       </div>
       <div class="wmodal-features">
         <h4 class="wmodal-features-heading">{t.detailFeaturesHeading}</h4>
@@ -224,7 +224,7 @@ const t = ui[lang].works;
     max-height: 82vh;
     padding: 0;
     color: var(--text-primary);
-    /* UA stylesheet hides when not [open]; we switch to flex when visible */
+    margin: auto; /* restore UA centering overridden by global margin:0 reset */
   }
   .wmodal[open] {
     display: flex;
