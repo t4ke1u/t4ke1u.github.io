@@ -106,6 +106,8 @@ const loop2 = [...col2, ...col2];
     gap: 0.75rem;
     height: 580px;
     overflow: hidden;
+    transform: translateZ(0); /* iOS: overflow:hidden が transform アニメーション中も機能するよう GPU レイヤーに昇格 */
+    -webkit-transform: translateZ(0);
   }
 
   .hero-photos::before,
