@@ -34,9 +34,16 @@ const {
     <script is:inline>
       (function () {
         var stored = localStorage.getItem('theme');
-        var prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        var theme = stored || (prefersDark ? 'dark' : 'light');
+        var mq = window.matchMedia('(prefers-color-scheme: dark)');
+        var theme = stored || (mq.matches ? 'dark' : 'light');
         document.documentElement.setAttribute('data-theme', theme);
+
+        mq.addEventListener('change', function (e) {
+          if (!localStorage.getItem('theme')) {
+            document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+            window.dispatchEvent(new CustomEvent('theme-change'));
+          }
+        });
       })();
     </script>
   </head>

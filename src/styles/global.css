@@ -47,6 +47,20 @@
   --particle-color: #94a3b8;
 }
 
+/* ── OS preference fallback (before JS sets data-theme) ── */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --bg:             #f4f6f9;
+    --bg-card:        rgba(255, 255, 255, 0.85);
+    --text-primary:   #111827;
+    --text-secondary: #6b7280;
+    --accent:         #0284c7;
+    --border:         rgba(17, 24, 39, 0.10);
+    --nav-bg:         rgba(244, 246, 249, 0.92);
+    --particle-color: #94a3b8;
+  }
+}
+
 /* ── Theme switch transition ─────────────────────── */
 .theme-transitioning,
 .theme-transitioning *,
@@ -66,6 +80,11 @@
 /* Light mode: show moon (= click → go dark) */
 [data-theme="light"] .theme-icon-sun  { display: none;  }
 [data-theme="light"] .theme-icon-moon { display: block; }
+/* OS light preference fallback */
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .theme-icon-sun  { display: none;  }
+  :root:not([data-theme="dark"]) .theme-icon-moon { display: block; }
+}
 
 html { scroll-behavior: smooth; }
 
