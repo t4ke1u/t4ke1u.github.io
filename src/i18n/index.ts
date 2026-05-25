@@ -24,10 +24,8 @@ export const ui = {
       timeline: [
         { date: '2026.04', title: 'ソニー・ホンダモビリティ株式会社', sub: 'ソフトウェアエンジニア — モバイルアプリ開発チーム', accent: true },
         { date: '2026.03', title: '早稲田大学大学院 修士（工学）', sub: '基幹理工学研究科 情報理工・情報通信専攻' },
-        { date: '2025.01', title: 'ICCE 2025 Best Session Presentation Award', sub: 'IEEE International Conference on Consumer Electronics', accent: true },
         { date: '2024.04', title: '早稲田大学大学院', sub: '量子コンピュータを用いた組合せ最適化アルゴリズムの研究' },
         { date: '2023.05', title: '株式会社Quanmatic — 長期インターン', sub: 'フルスタック開発：FastAPI · Next.js · AWS · UI/UX' },
-        { date: '2022.09', title: '理工展連絡会 IT部門長', sub: '30名超のチームを主導：要件定義 → 開発 → リリース' },
         { date: '2020.04', title: '早稲田大学 基幹理工学部 入学', sub: '情報通信学科' },
       ],
     },
@@ -213,10 +211,8 @@ export const ui = {
       timeline: [
         { date: '2026.04', title: 'Sony Honda Mobility Inc.', sub: 'Software Engineer — Mobile App Development Team', accent: true },
         { date: '2026.03', title: 'Waseda University, M.Eng.', sub: 'Graduate School of Fundamental Science and Engineering' },
-        { date: '2025.01', title: 'ICCE 2025 Best Session Presentation Award', sub: 'IEEE International Conference on Consumer Electronics', accent: true },
         { date: '2024.04', title: 'Waseda University Graduate School', sub: 'Research on quantum combinatorial optimization algorithms' },
         { date: '2023.05', title: 'Quanmatic Inc. — Long-term Intern', sub: 'Full-stack development: FastAPI · Next.js · AWS · UI/UX' },
-        { date: '2022.09', title: 'Riko-ten IT Division Lead', sub: 'Led 30+ member team: requirements → development → release' },
         { date: '2020.04', title: 'Waseda University, B.Eng.', sub: 'Department of Computer Science and Communications Engineering' },
       ],
     },
