@@ -2,23 +2,37 @@
 
 
 
+import { Image } from 'astro:assets';
 import { type Lang, ui } from '../../i18n';
+
+import imgOceanSunset           from '../../assets/images/ocean-sunset.jpg';
+import imgNotreDame              from '../../assets/images/notre-dame-cathedral.jpg';
+import imgAutumnTemple           from '../../assets/images/autumn-temple-gate.jpg';
+import imgLighthouse             from '../../assets/images/coastal-cape-lighthouse.jpg';
+import imgHakoneTorii            from '../../assets/images/hakone-torii-lake.jpg';
+import imgShibazakura            from '../../assets/images/shibazakura-torii.jpg';
+import imgNachiPagoda            from '../../assets/images/nachi-pagoda-waterfall.jpg';
+import imgWarehouse              from '../../assets/images/historic-warehouse-corridor.jpg';
+import imgAutumnTrain            from '../../assets/images/autumn-train-forest.jpg';
+import imgSunsetSilhouette       from '../../assets/images/sunset-reflection-silhouette.jpg';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
 const t = ui[lang].hero;
 
 const col1 = [
-  { src: '/ocean-sunset.jpg',                alt: '' },
-  { src: '/notre-dame-cathedral.jpg',        alt: '' },
-  { src: '/autumn-temple-gate.jpg',          alt: '' },
-  { src: '/coastal-cape-lighthouse.jpg',     alt: '' },
+  { src: imgOceanSunset,     alt: '' },
+  { src: imgNotreDame,       alt: '' },
+  { src: imgAutumnTemple,    alt: '' },
+  { src: imgLighthouse,      alt: '' },
+  { src: imgHakoneTorii,     alt: '' },
 ];
 const col2 = [
-  { src: '/shibazakura-torii.jpg',           alt: '' },
-  { src: '/nachi-pagoda-waterfall.jpg',      alt: '' },
-  { src: '/historic-warehouse-corridor.jpg', alt: '' },
-  { src: '/autumn-train-forest.jpg',         alt: '' },
+  { src: imgShibazakura,     alt: '' },
+  { src: imgNachiPagoda,     alt: '' },
+  { src: imgWarehouse,       alt: '' },
+  { src: imgAutumnTrain,     alt: '' },
+  { src: imgSunsetSilhouette, alt: '' },
 ];
 
 const loop1 = [...col1, ...col1];
@@ -39,14 +53,14 @@ const loop2 = [...col2, ...col2];
     <div class="photo-col photo-col--down">
       {loop1.map((p) => (
         <div class="photo-item">
-          <img src={p.src} alt="" loading="lazy" />
+          <Image src={p.src} alt={p.alt} widths={[400, 800]} sizes="(max-width: 900px) 160px, 220px" loading="lazy" />
         </div>
       ))}
     </div>
     <div class="photo-col photo-col--up">
       {loop2.map((p) => (
         <div class="photo-item">
-          <img src={p.src} alt="" loading="lazy" />
+          <Image src={p.src} alt={p.alt} widths={[400, 800]} sizes="(max-width: 900px) 160px, 220px" loading="lazy" />
         </div>
       ))}
     </div>
