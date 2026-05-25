@@ -8,9 +8,11 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 npm run dev       # dev server at http://localhost:4321
 npm run build     # production build → ./dist/
 npm run preview   # preview the production build locally
+npm run check     # Biome lint + format check
+npm run check:fix # Biome lint + format auto-fix
 ```
 
-No test runner or linter is configured beyond Astro's built-in TypeScript checking.
+No test runner is configured. Biome handles linting and formatting (`biome.json`). `.astro` file support is enabled via `html.experimentalFullSupportEnabled`. Rules that cause false positives in Astro frontmatter (`noUnusedVariables`, `noUnusedImports`, `useConst`, `useImportType`) are disabled for `**/*.astro` via the `overrides` block.
 
 ## Architecture
 

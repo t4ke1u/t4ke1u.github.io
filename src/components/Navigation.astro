@@ -1,5 +1,8 @@
 ---
-import { ui, type Lang } from '../i18n';
+
+
+
+import { type Lang, ui } from '../i18n';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
@@ -29,7 +32,7 @@ const navLinks = [
     <!-- 右: コントロール -->
     <div class="nav-controls">
       <!-- テーマトグル (デスクトップ) -->
-      <button class="ctrl-btn theme-btn" data-theme-toggle aria-label="テーマを切り替える">
+      <button type="button" class="ctrl-btn theme-btn" data-theme-toggle aria-label="テーマを切り替える">
         <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
           viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
           stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -54,7 +57,7 @@ const navLinks = [
       </a>
 
       <!-- ハンバーガー (モバイルのみ) -->
-      <button class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
+      <button type="button" class="hamburger" id="hamburger" aria-label="メニューを開く" aria-expanded="false">
         <span></span>
         <span></span>
         <span></span>
@@ -72,7 +75,7 @@ const navLinks = [
 
     <!-- モバイル内のユーティリティ -->
     <div class="mobile-utils">
-      <button class="mobile-util-btn" data-theme-toggle>
+      <button type="button" class="mobile-util-btn" data-theme-toggle>
         <span class="util-icon">
           <svg class="theme-icon-sun" xmlns="http://www.w3.org/2000/svg" width="14" height="14"
             viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"

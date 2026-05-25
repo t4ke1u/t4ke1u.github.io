@@ -1,5 +1,8 @@
 ---
-import { ui, type Lang } from '../../i18n';
+
+
+
+import { type Lang, ui } from '../../i18n';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
@@ -102,7 +105,7 @@ const t = ui[lang].research;
   .research-overview strong { color: var(--text-primary); font-weight: 500; }
   :global(.highlight) { color: var(--accent); font-weight: 600; }
 
-  .research-stats {
+  .research-overview .research-stats {
     display: flex;
     align-items: center;
     gap: 0.75rem;
@@ -110,7 +113,7 @@ const t = ui[lang].research;
     padding: 1rem 0;
     border-top: 1px solid var(--border);
     border-bottom: 1px solid var(--border);
-    margin-bottom: 1.25rem !important;
+    margin-bottom: 1.25rem;
   }
   .stat { font-size: var(--fs-body-md); color: var(--text-secondary); }
   .stat-num {

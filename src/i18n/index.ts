@@ -22,11 +22,32 @@ export const ui = {
         '新しい技術を実際の問題解決に結びつけることを大切にしています。研究では量子・古典ハイブリッドアルゴリズムが、従来手法では届かなかったスケールの最適化問題を解けることを実証しました。',
       ],
       timeline: [
-        { date: '2026.04', title: 'ソニー・ホンダモビリティ株式会社', sub: 'ソフトウェアエンジニア — モバイルアプリ開発チーム', accent: true },
-        { date: '2026.03', title: '早稲田大学大学院 修士（工学）', sub: '基幹理工学研究科 情報理工・情報通信専攻' },
-        { date: '2024.04', title: '早稲田大学大学院', sub: '量子コンピュータを用いた組合せ最適化アルゴリズムの研究' },
-        { date: '2023.05', title: '株式会社Quanmatic — 長期インターン', sub: 'フルスタック開発：FastAPI · Next.js · AWS · UI/UX' },
-        { date: '2020.04', title: '早稲田大学 基幹理工学部 入学', sub: '情報通信学科' },
+        {
+          date: '2026.04',
+          title: 'ソニー・ホンダモビリティ株式会社',
+          sub: 'ソフトウェアエンジニア — モバイルアプリ開発チーム',
+          accent: true,
+        },
+        {
+          date: '2026.03',
+          title: '早稲田大学大学院 修士（工学）',
+          sub: '基幹理工学研究科 情報理工・情報通信専攻',
+        },
+        {
+          date: '2024.04',
+          title: '早稲田大学大学院',
+          sub: '量子コンピュータを用いた組合せ最適化アルゴリズムの研究',
+        },
+        {
+          date: '2023.05',
+          title: '株式会社Quanmatic — 長期インターン',
+          sub: 'フルスタック開発：FastAPI · Next.js · AWS · UI/UX',
+        },
+        {
+          date: '2020.04',
+          title: '早稲田大学 基幹理工学部 入学',
+          sub: '情報通信学科',
+        },
       ],
     },
     skills: {
@@ -95,10 +116,20 @@ export const ui = {
           period: '2022 — 2026',
           description:
             '大学生の履修選択を量子組合せ最適化問題として初めて学術的にモデル化。pVSQAを適用した量子・古典ハイブリッドアプローチを提案し、ゲート式量子コンピュータで500変数のインスタンスを求解することに成功。本分野における規模の記録を達成。',
-          tech: ['Python', 'Qiskit', 'PyTorch', 'Fixstars Amplify', 'FastAPI', 'AWS'],
+          tech: [
+            'Python',
+            'Qiskit',
+            'PyTorch',
+            'Fixstars Amplify',
+            'FastAPI',
+            'AWS',
+          ],
           links: [
             { label: 'GitHub', href: 'https://github.com/t4ke1u/qlasop-app' },
-            { label: 'IEEE Access', href: 'https://ieeexplore.ieee.org/author/308719292671247' },
+            {
+              label: 'IEEE Access',
+              href: 'https://ieeexplore.ieee.org/author/308719292671247',
+            },
           ],
           featured: true,
         },
@@ -161,16 +192,57 @@ export const ui = {
       ieeeLabel: 'IEEE 著者プロフィール ↗',
       awardsTitle: '受賞歴',
       awards: [
-        { title: 'ICCE 2025 Best Session Presentation Award', org: 'IEEE International Conference on Consumer Electronics', year: 'Jan. 2025' },
-        { title: '早稲田大学大学院 専攻賞', org: '基幹理工学研究科 情報理工・情報通信専攻', year: '2025' },
-        { title: '情報処理学会 デザインガイア 2025 優秀ポスター賞', org: '情報処理学会', year: 'Dec. 2025' },
+        {
+          title: 'ICCE 2025 Best Session Presentation Award',
+          org: 'IEEE International Conference on Consumer Electronics',
+          year: 'Jan. 2025',
+        },
+        {
+          title: '早稲田大学大学院 専攻賞',
+          org: '基幹理工学研究科 情報理工・情報通信専攻',
+          year: '2025',
+        },
+        {
+          title: '情報処理学会 デザインガイア 2025 優秀ポスター賞',
+          org: '情報処理学会',
+          year: 'Dec. 2025',
+        },
       ],
       papersTitle: '主要論文',
       papers: [
-        { type: '論文誌', title: 'An Ising Machine Approach to the Personalized Course Selection Problem', authors: 'T. Ota, K. Fukada, and N. Togawa', venue: 'IEEE Access, vol.13, pp. 152148–152160, 2025.', doi: 'https://doi.org/10.1109/ACCESS.2025.3603606' },
-        { type: '国際学会', title: 'Hybrid Quantum-Classical Framework based on subQUBO and pVSQA', authors: 'T. Ota, T. Shirai, M. Morita, K. Kimura, Y. Takita, and N. Togawa', venue: 'APS Global Physics Summit 2026.', doi: null },
-        { type: '国際学会', title: 'Course Selection Optimization using pVSQA on Quantum Computers', authors: 'T. Ota, T. Shirai, and N. Togawa', venue: 'IEEE ICCE-Berlin 2025, pp. 207–210.', doi: 'https://doi.org/10.1109/ICCE-Berlin67488.2025.11277633' },
-        { type: '国際学会', title: 'Evaluating pVSQA for Large-Sized Constrained Optimization on Quantum Simulator', authors: 'T. Ota et al.', venue: 'IEEE QCE 2025, vol.02, pp. 396–397.', doi: 'https://doi.org/10.1109/QCE65121.2025.10363' },
+        {
+          type: '論文誌',
+          title:
+            'An Ising Machine Approach to the Personalized Course Selection Problem',
+          authors: 'T. Ota, K. Fukada, and N. Togawa',
+          venue: 'IEEE Access, vol.13, pp. 152148–152160, 2025.',
+          doi: 'https://doi.org/10.1109/ACCESS.2025.3603606',
+        },
+        {
+          type: '国際学会',
+          title:
+            'Hybrid Quantum-Classical Framework based on subQUBO and pVSQA',
+          authors:
+            'T. Ota, T. Shirai, M. Morita, K. Kimura, Y. Takita, and N. Togawa',
+          venue: 'APS Global Physics Summit 2026.',
+          doi: null,
+        },
+        {
+          type: '国際学会',
+          title:
+            'Course Selection Optimization using pVSQA on Quantum Computers',
+          authors: 'T. Ota, T. Shirai, and N. Togawa',
+          venue: 'IEEE ICCE-Berlin 2025, pp. 207–210.',
+          doi: 'https://doi.org/10.1109/ICCE-Berlin67488.2025.11277633',
+        },
+        {
+          type: '国際学会',
+          title:
+            'Evaluating pVSQA for Large-Sized Constrained Optimization on Quantum Simulator',
+          authors: 'T. Ota et al.',
+          venue: 'IEEE QCE 2025, vol.02, pp. 396–397.',
+          doi: 'https://doi.org/10.1109/QCE65121.2025.10363',
+        },
       ],
     },
     contact: {
@@ -204,16 +276,37 @@ export const ui = {
       sectionNum: '01.',
       sectionTitle: 'About',
       body: [
-        "I'm a software engineer at <span class=\"highlight\">Sony Honda Mobility</span>, working on the mobile app development team. I hold a Master's degree in Computer Science from Waseda University, where I researched quantum computing algorithms for combinatorial optimization.",
-        "During my graduate studies, I simultaneously worked as a long-term intern at <span class=\"highlight\">Quanmatic</span> — a university spin-off — where I built production systems spanning backend APIs, cloud infrastructure, frontend UIs, and UI/UX design end-to-end.",
-        "I care about connecting new technology to real problems. My research showed that quantum-classical hybrid algorithms can solve optimization problems at scales previously out of reach — and I bring that same mindset to product engineering.",
+        'I\'m a software engineer at <span class="highlight">Sony Honda Mobility</span>, working on the mobile app development team. I hold a Master\'s degree in Computer Science from Waseda University, where I researched quantum computing algorithms for combinatorial optimization.',
+        'During my graduate studies, I simultaneously worked as a long-term intern at <span class="highlight">Quanmatic</span> — a university spin-off — where I built production systems spanning backend APIs, cloud infrastructure, frontend UIs, and UI/UX design end-to-end.',
+        'I care about connecting new technology to real problems. My research showed that quantum-classical hybrid algorithms can solve optimization problems at scales previously out of reach — and I bring that same mindset to product engineering.',
       ],
       timeline: [
-        { date: '2026.04', title: 'Sony Honda Mobility Inc.', sub: 'Software Engineer — Mobile App Development Team', accent: true },
-        { date: '2026.03', title: 'Waseda University, M.Eng.', sub: 'Graduate School of Fundamental Science and Engineering' },
-        { date: '2024.04', title: 'Waseda University Graduate School', sub: 'Research on quantum combinatorial optimization algorithms' },
-        { date: '2023.05', title: 'Quanmatic Inc. — Long-term Intern', sub: 'Full-stack development: FastAPI · Next.js · AWS · UI/UX' },
-        { date: '2020.04', title: 'Waseda University, B.Eng.', sub: 'Department of Computer Science and Communications Engineering' },
+        {
+          date: '2026.04',
+          title: 'Sony Honda Mobility Inc.',
+          sub: 'Software Engineer — Mobile App Development Team',
+          accent: true,
+        },
+        {
+          date: '2026.03',
+          title: 'Waseda University, M.Eng.',
+          sub: 'Graduate School of Fundamental Science and Engineering',
+        },
+        {
+          date: '2024.04',
+          title: 'Waseda University Graduate School',
+          sub: 'Research on quantum combinatorial optimization algorithms',
+        },
+        {
+          date: '2023.05',
+          title: 'Quanmatic Inc. — Long-term Intern',
+          sub: 'Full-stack development: FastAPI · Next.js · AWS · UI/UX',
+        },
+        {
+          date: '2020.04',
+          title: 'Waseda University, B.Eng.',
+          sub: 'Department of Computer Science and Communications Engineering',
+        },
       ],
     },
     skills: {
@@ -281,11 +374,21 @@ export const ui = {
           title: 'Personalized Course Selection System',
           period: '2022 — 2026',
           description:
-            "Modeled university course selection as a quantum combinatorial optimization problem for the first time in academic literature. Proposed a hybrid quantum-classical approach applying pVSQA, and successfully solved 500-variable instances on gate-model quantum computers — a scale record in the domain.",
-          tech: ['Python', 'Qiskit', 'PyTorch', 'Fixstars Amplify', 'FastAPI', 'AWS'],
+            'Modeled university course selection as a quantum combinatorial optimization problem for the first time in academic literature. Proposed a hybrid quantum-classical approach applying pVSQA, and successfully solved 500-variable instances on gate-model quantum computers — a scale record in the domain.',
+          tech: [
+            'Python',
+            'Qiskit',
+            'PyTorch',
+            'Fixstars Amplify',
+            'FastAPI',
+            'AWS',
+          ],
           links: [
             { label: 'GitHub', href: 'https://github.com/t4ke1u/qlasop-app' },
-            { label: 'IEEE Access', href: 'https://ieeexplore.ieee.org/author/308719292671247' },
+            {
+              label: 'IEEE Access',
+              href: 'https://ieeexplore.ieee.org/author/308719292671247',
+            },
           ],
           featured: true,
         },
@@ -295,7 +398,7 @@ export const ui = {
           title: 'Business Data Management App',
           period: '2023 — 2024',
           description:
-            "Led end-to-end development of an internal tool to manage and clean operational data used for quantum optimization workflows. Designed the UI/UX in Figma, implemented the FastAPI backend, and built the Next.js frontend — all as a solo contributor.",
+            'Led end-to-end development of an internal tool to manage and clean operational data used for quantum optimization workflows. Designed the UI/UX in Figma, implemented the FastAPI backend, and built the Next.js frontend — all as a solo contributor.',
           tech: ['FastAPI', 'Next.js', 'PostgreSQL', 'AWS', 'Figma'],
           links: [],
           featured: false,
@@ -306,7 +409,7 @@ export const ui = {
           title: 'LLM × Quantum Optimization Web App (PoC)',
           period: '2024 — 2025',
           description:
-            "Conceived and built a proof-of-concept web app that lets users interact with a quantum optimization engine in natural language. Connected LLM inference, web search, database retrieval, and the optimization solver via MCP, then validated it internally.",
+            'Conceived and built a proof-of-concept web app that lets users interact with a quantum optimization engine in natural language. Connected LLM inference, web search, database retrieval, and the optimization solver via MCP, then validated it internally.',
           tech: ['LangGraph', 'MCP', 'LLM APIs', 'FastAPI', 'Next.js'],
           links: [],
           featured: false,
@@ -328,7 +431,7 @@ export const ui = {
           title: 'Campus Festival App & Website',
           period: '2020 — 2022',
           description:
-            "Developed and operated mobile apps and websites for campus festival visitors as part of Riko-ten Planning Committee. In the third year, took on the IT Division Lead role — managing a 30-member cross-year team through requirements definition, onboarding, and release.",
+            'Developed and operated mobile apps and websites for campus festival visitors as part of Riko-ten Planning Committee. In the third year, took on the IT Division Lead role — managing a 30-member cross-year team through requirements definition, onboarding, and release.',
           tech: ['Swift / UIKit', 'Flutter', 'React', 'Google Cloud'],
           links: [],
           featured: false,
@@ -340,24 +443,69 @@ export const ui = {
       sectionTitle: 'Research',
       overviewTitle: 'Quantum Computing for Combinatorial Optimization',
       body: [
-        "My research addresses how quantum computers can solve combinatorial optimization problems that are computationally intractable for classical machines. I formalized <em>personalized course selection</em> as a new NP-hard optimization problem, proposed the first quantum-based model for it, and applied the hybrid quantum-classical algorithm <strong>pVSQA</strong> to successfully solve instances of up to <span class=\"highlight\">500 variables</span> on a gate-model quantum computer — a scale record in the field.",
+        'My research addresses how quantum computers can solve combinatorial optimization problems that are computationally intractable for classical machines. I formalized <em>personalized course selection</em> as a new NP-hard optimization problem, proposed the first quantum-based model for it, and applied the hybrid quantum-classical algorithm <strong>pVSQA</strong> to successfully solve instances of up to <span class="highlight">500 variables</span> on a gate-model quantum computer — a scale record in the field.',
         "In my master's research, I collaborated with the <strong>Quantum Laboratory, Fujitsu Research</strong> on large-scale optimization benchmarks using subQUBO decomposition combined with variational quantum algorithms.",
       ],
       statsNums: [2, 9, 9],
-      statsLabels: ['journal papers', 'international conferences', 'domestic conferences'],
+      statsLabels: [
+        'journal papers',
+        'international conferences',
+        'domestic conferences',
+      ],
       ieeeLabel: 'IEEE Author Profile ↗',
       awardsTitle: 'Awards',
       awards: [
-        { title: 'ICCE 2025 Best Session Presentation Award', org: 'IEEE International Conference on Consumer Electronics', year: 'Jan. 2025' },
-        { title: 'Graduate School Academic Excellence Award', org: 'Waseda University — Dept. of Computer Science and Communications Engineering', year: '2025' },
-        { title: 'IPSJ Design Gaia 2025 Best Poster Award', org: 'Information Processing Society of Japan', year: 'Dec. 2025' },
+        {
+          title: 'ICCE 2025 Best Session Presentation Award',
+          org: 'IEEE International Conference on Consumer Electronics',
+          year: 'Jan. 2025',
+        },
+        {
+          title: 'Graduate School Academic Excellence Award',
+          org: 'Waseda University — Dept. of Computer Science and Communications Engineering',
+          year: '2025',
+        },
+        {
+          title: 'IPSJ Design Gaia 2025 Best Poster Award',
+          org: 'Information Processing Society of Japan',
+          year: 'Dec. 2025',
+        },
       ],
       papersTitle: 'Selected Publications',
       papers: [
-        { type: 'Journal', title: 'An Ising Machine Approach to the Personalized Course Selection Problem', authors: 'T. Ota, K. Fukada, and N. Togawa', venue: 'IEEE Access, vol.13, pp. 152148–152160, 2025.', doi: 'https://doi.org/10.1109/ACCESS.2025.3603606' },
-        { type: "Int'l Conf.", title: 'Hybrid Quantum-Classical Framework based on subQUBO and pVSQA', authors: 'T. Ota, T. Shirai, M. Morita, K. Kimura, Y. Takita, and N. Togawa', venue: 'APS Global Physics Summit 2026.', doi: null },
-        { type: "Int'l Conf.", title: 'Course Selection Optimization using pVSQA on Quantum Computers', authors: 'T. Ota, T. Shirai, and N. Togawa', venue: 'IEEE ICCE-Berlin 2025, pp. 207–210.', doi: 'https://doi.org/10.1109/ICCE-Berlin67488.2025.11277633' },
-        { type: "Int'l Conf.", title: 'Evaluating pVSQA for Large-Sized Constrained Optimization on Quantum Simulator', authors: 'T. Ota et al.', venue: 'IEEE QCE 2025, vol.02, pp. 396–397.', doi: 'https://doi.org/10.1109/QCE65121.2025.10363' },
+        {
+          type: 'Journal',
+          title:
+            'An Ising Machine Approach to the Personalized Course Selection Problem',
+          authors: 'T. Ota, K. Fukada, and N. Togawa',
+          venue: 'IEEE Access, vol.13, pp. 152148–152160, 2025.',
+          doi: 'https://doi.org/10.1109/ACCESS.2025.3603606',
+        },
+        {
+          type: "Int'l Conf.",
+          title:
+            'Hybrid Quantum-Classical Framework based on subQUBO and pVSQA',
+          authors:
+            'T. Ota, T. Shirai, M. Morita, K. Kimura, Y. Takita, and N. Togawa',
+          venue: 'APS Global Physics Summit 2026.',
+          doi: null,
+        },
+        {
+          type: "Int'l Conf.",
+          title:
+            'Course Selection Optimization using pVSQA on Quantum Computers',
+          authors: 'T. Ota, T. Shirai, and N. Togawa',
+          venue: 'IEEE ICCE-Berlin 2025, pp. 207–210.',
+          doi: 'https://doi.org/10.1109/ICCE-Berlin67488.2025.11277633',
+        },
+        {
+          type: "Int'l Conf.",
+          title:
+            'Evaluating pVSQA for Large-Sized Constrained Optimization on Quantum Simulator',
+          authors: 'T. Ota et al.',
+          venue: 'IEEE QCE 2025, vol.02, pp. 396–397.',
+          doi: 'https://doi.org/10.1109/QCE65121.2025.10363',
+        },
       ],
     },
     contact: {
