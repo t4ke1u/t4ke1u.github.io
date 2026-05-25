@@ -2,7 +2,12 @@
 
 
 
+import { Image } from 'astro:assets';
 import { type Lang, ui } from '../../i18n';
+
+import imgFestival1 from '../../assets/images/festival-app-screen1.png';
+import imgFestival2 from '../../assets/images/festival-app-screen2.png';
+import imgFestival3 from '../../assets/images/festival-app-screen3.jpg';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
@@ -33,23 +38,77 @@ const t = ui[lang].works;
           <p class="project-description">{p.description}</p>
           <div class="project-footer">
             <div class="project-tech">
-              {p.tech.map(t => <span class="tech-tag">{t}</span>)}
+              {p.tech.map(tech => <span class="tech-tag">{tech}</span>)}
             </div>
-            {p.links.length > 0 && (
-              <div class="project-links">
-                {p.links.map(link => (
-                  <a href={link.href} target="_blank" rel="noopener noreferrer" class="project-link">
-                    {link.label} ↗
-                  </a>
-                ))}
-              </div>
-            )}
+            <div class="project-actions">
+              {p.links.length > 0 && (
+                <div class="project-links">
+                  {p.links.map(link => (
+                    <a href={link.href} target="_blank" rel="noopener noreferrer" class="project-link">
+                      {link.label} ↗
+                    </a>
+                  ))}
+                </div>
+              )}
+              {p.features.length > 0 && (
+                <button
+                  class="detail-btn"
+                  data-modal-open={`work-detail-${p.num}`}
+                >
+                  {t.detailLabel} ↗
+                </button>
+              )}
+            </div>
           </div>
         </article>
       ))}
     </div>
   </div>
 </section>
+
+<!-- Works 05 detail modal -->
+<dialog id="work-detail-05" class="modal">
+  <div class="modal-inner">
+    <div class="modal-header">
+      <div>
+        <p class="modal-eyebrow">05. {t.projects[4].category}</p>
+        <h3 class="modal-title">{t.projects[4].title}</h3>
+      </div>
+      <button class="modal-close" data-modal-close aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      <div class="modal-gallery">
+        <Image src={imgFestival1} alt="" widths={[300, 600]} sizes="200px" class="gallery-img" />
+        <Image src={imgFestival2} alt="" widths={[300, 600]} sizes="200px" class="gallery-img" />
+        <Image src={imgFestival3} alt="" widths={[300, 600]} sizes="200px" class="gallery-img" />
+      </div>
+      <div class="modal-features">
+        <h4 class="features-heading">{t.detailFeaturesHeading}</h4>
+        <ul class="features-list">
+          {t.projects[4].features.map(f => (
+            <li class="feature-item">
+              <span class="feature-dot"></span>
+              {f}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<script>
+  document.querySelectorAll('[data-modal-open]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = (btn as HTMLElement).dataset.modalOpen!;
+      (document.getElementById(id) as HTMLDialogElement).showModal();
+    });
+  });
+  document.querySelectorAll('dialog').forEach(dialog => {
+    dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+    dialog.querySelector('[data-modal-close]')?.addEventListener('click', () => dialog.close());
+  });
+</script>
 
 <style>
   .works-list {
@@ -140,10 +199,15 @@ const t = ui[lang].works;
     white-space: nowrap;
   }
 
+  .project-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+  }
   .project-links {
     display: flex;
     gap: 1rem;
-    flex-shrink: 0;
   }
   .project-link {
     font-size: var(--fs-body-md);
@@ -153,8 +217,133 @@ const t = ui[lang].works;
   }
   .project-link:hover { color: var(--accent); }
 
+  .detail-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: var(--fs-body-md);
+    color: var(--text-secondary);
+    cursor: pointer;
+    transition: color 0.2s;
+    white-space: nowrap;
+    font-family: inherit;
+  }
+  .detail-btn:hover { color: var(--accent); }
+
+  /* Modal */
+  .modal {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    max-width: 680px;
+    width: 90vw;
+    max-height: 82vh;
+    padding: 0;
+    overflow: hidden;
+    color: var(--text-primary);
+  }
+  .modal[open] { display: flex; flex-direction: column; }
+  .modal::backdrop {
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .modal-inner { display: flex; flex-direction: column; height: 100%; }
+  .modal-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1.5rem 2rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+    gap: 1rem;
+  }
+  .modal-eyebrow {
+    font-size: var(--fs-body-sm);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--accent);
+    margin-bottom: 0.35rem;
+  }
+  .modal-title {
+    font-size: var(--fs-h2);
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+  .modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+    transition: color 0.2s;
+    line-height: 1;
+    flex-shrink: 0;
+  }
+  .modal-close:hover { color: var(--text-primary); }
+
+  .modal-body {
+    overflow-y: auto;
+    padding: 1.5rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .modal-gallery {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0.75rem;
+  }
+  .gallery-img {
+    width: 100%;
+    height: 260px;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+  }
+
+  .features-heading {
+    font-size: var(--fs-body-sm);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: var(--fs-body);
+    color: var(--text-secondary);
+  }
+  .feature-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
   @media (max-width: 768px) {
     .works-list { grid-template-columns: 1fr; }
     .project-card--featured { grid-column: span 1; }
+    .modal-gallery { grid-template-columns: repeat(3, 1fr); }
+    .gallery-img { height: 180px; }
+  }
+  @media (max-width: 480px) {
+    .modal-header { padding: 1.25rem 1.25rem 1rem; }
+    .modal-body { padding: 1.25rem; }
+    .modal-gallery { grid-template-columns: 1fr; }
+    .gallery-img { height: 300px; }
   }
 </style>

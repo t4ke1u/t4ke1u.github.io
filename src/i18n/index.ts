@@ -108,6 +108,8 @@ export const ui = {
     works: {
       sectionNum: '03.',
       sectionTitle: 'Works',
+      detailLabel: '詳細',
+      detailFeaturesHeading: '主な機能',
       projects: [
         {
           num: '01',
@@ -125,6 +127,7 @@ export const ui = {
             'AWS',
           ],
           links: [
+            { label: 'App', href: 'https://qlasop.vercel.app/' },
             { label: 'GitHub', href: 'https://github.com/t4ke1u/qlasop-app' },
             {
               label: 'IEEE Access',
@@ -132,6 +135,7 @@ export const ui = {
             },
           ],
           featured: true,
+          features: [],
         },
         {
           num: '02',
@@ -143,6 +147,7 @@ export const ui = {
           tech: ['FastAPI', 'Next.js', 'PostgreSQL', 'AWS', 'Figma'],
           links: [],
           featured: false,
+          features: [],
         },
         {
           num: '03',
@@ -154,6 +159,7 @@ export const ui = {
           tech: ['LangGraph', 'MCP', 'LLM APIs', 'FastAPI', 'Next.js'],
           links: [],
           featured: false,
+          features: [],
         },
         {
           num: '04',
@@ -165,6 +171,7 @@ export const ui = {
           tech: ['GitHub Actions', 'Claude Code', 'Kotlin / KMP'],
           links: [],
           featured: false,
+          features: [],
         },
         {
           num: '05',
@@ -176,6 +183,7 @@ export const ui = {
           tech: ['Swift / UIKit', 'Flutter', 'React', 'Google Cloud'],
           links: [],
           featured: false,
+          features: ['企画の検索', 'QRコードを用いたスタンプラリー', '飲食店のクーポンのくじ引き'],
         },
       ],
     },
@@ -242,6 +250,49 @@ export const ui = {
           authors: 'T. Ota et al.',
           venue: 'IEEE QCE 2025, vol.02, pp. 396–397.',
           doi: 'https://doi.org/10.1109/QCE65121.2025.10363',
+        },
+      ],
+      allPapersLabel: 'すべての発表を見る',
+      allPapersModalTitle: '発表実績',
+      allPaperCategories: [
+        {
+          heading: '論文誌（査読付）',
+          items: [
+            { authors: 'T. Ota, K. Fukada, and N. Togawa', title: 'An Ising Machine Approach to the Personalized Course Selection Problem', venue: 'IEEE Access, vol.13, pp. 152148–152160, 2025.', doi: 'https://doi.org/10.1109/ACCESS.2025.3603606' },
+          ],
+        },
+        {
+          heading: '国際会議（査読付）',
+          items: [
+            { authors: 'T. Ota, T. Shirai, M. Morita, K. Kimura, Y. Takita, and N. Togawa', title: 'Hybrid Quantum-Classical Framework based on subQUBO and pVSQA', venue: 'APS Global Physics Summit 2026.', doi: null },
+            { authors: 'R. Aoki, T. Ota, T. Shirai, and N. Togawa', title: 'Constraint-Parameterized Spin-Variable Reduction Method for QAP', venue: 'IEEE ICCE 2026.', doi: null },
+            { authors: 'T. Ota, T. Shirai, and N. Togawa', title: 'Course Selection Optimization using pVSQA on Quantum Computers', venue: 'IEEE ICCE-Berlin 2025, pp. 207–210.', doi: 'https://doi.org/10.1109/ICCE-Berlin67488.2025.11277633' },
+            { authors: 'K. Mita, T. Ota, and N. Togawa', title: 'SubQUBO Construction Based on Grid Reduction Method Using an Ising Machine', venue: 'IEEE QCE 2025, vol.02, pp. 486–487.', doi: 'https://doi.org/10.1109/QCE65121.2025.10408' },
+            { authors: 'T. Ota, T. Shirai, M. Morita, K. Kimura, Y. Takita, and N. Togawa', title: 'Evaluating pVSQA for Large-Sized Constrained Optimization on Quantum Simulator', venue: 'IEEE QCE 2025, vol.02, pp. 396–397.', doi: 'https://doi.org/10.1109/QCE65121.2025.10363' },
+            { authors: 'S. Inaba, T. Ota, C. Dogo, K. Saito, and N. Togawa', title: 'QUBO Simplification Method for Improving Solution Convergence Speed Using an Ising Machine', venue: 'IEEE QCE 2025, vol.02, pp. 492–493.', doi: 'https://doi.org/10.1109/QCE65121.2025.10411' },
+            { authors: 'T. Ota, K. Fukada, T. Shirai, and N. Togawa', title: 'Personalized Course Selection Optimization Using QAOA', venue: 'IEEE ICCE 2025, pp. 1–2.', doi: 'https://doi.org/10.1109/ICCE63647.2025.10930007' },
+            { authors: 'T. Ota, K. Fukada, and N. Togawa', title: 'Personalized Course Selection Optimization Using an Ising Machine', venue: 'IEEE QCE 2024, vol.02, pp. 430–431.', doi: 'https://doi.org/10.1109/QCE60285.2024.10340' },
+          ],
+        },
+        {
+          heading: '国際会議（査読無）',
+          items: [
+            { authors: 'T. Ota, K. Fukada, and N. Togawa', title: 'Optimizing Personalized Course Selection via an Ising Machine', venue: 'INQA 2024.', doi: null },
+          ],
+        },
+        {
+          heading: '国内学会',
+          items: [
+            { authors: '高橋 俊介, 太田 岳, 戸川 望', title: 'イジングマシンを用いた動的待ち時間と休憩を考慮したアミューズメントパーク経路最適化手法', venue: 'VLSI 設計技術研究会, Mar. 2026.', doi: null },
+            { authors: '長谷川 椋大, 冨田 柊, 太田 岳, 戸川 望', title: 'イジングマシンによるFormula 1レース開催スケジュール最適化問題の求解と評価', venue: 'VLSI 設計技術研究会, Mar. 2026.', doi: null },
+            { authors: '太田 岳, 白井 達彦, 戸川 望', title: 'FMAのためのランク学習を用いたQUBO構築手法', venue: 'デザインガイア 2025, Dec. 2025. ★優秀ポスター賞', doi: null },
+            { authors: '田中 綺珠, 梶 翔馬, 太田 岳, 池上 裕香, 鮑 思雅, 戸川 望', title: 'イジングマシンと大規模言語モデルによる複数日旅程計画問題へのアプローチ', venue: 'デザインガイア 2025, Dec. 2025. ★優秀ポスター賞', doi: null },
+            { authors: '青木 来生, 太田 岳, 白井 達彦, 戸川 望', title: '制約パラメータ化を用いたスピン変数削減手法', venue: 'デザインガイア 2025, Dec. 2025.', doi: null },
+            { authors: '太田 岳, 白井 達彦, 戸川 望', title: 'pVSQAを用いた履修最適化の一検討', venue: 'VLSI 設計技術研究会, Jun. 2025.', doi: null },
+            { authors: '三田 光希, 深田 佳祐, 太田 岳, 戸川 望', title: 'イジングマシンを用いた格子点削除法によるsubQUBO構築の評価', venue: 'VLSI 設計技術研究会, Jun. 2025.', doi: null },
+            { authors: '太田 岳, 深田 佳祐, 白井 達彦, 戸川 望', title: 'QAOAを用いた履修最適化の一検討', venue: 'デザインガイア 2024, Dec. 2024.', doi: null },
+            { authors: '太田 岳, 深田 佳祐, 戸川 望', title: 'イジングマシンを用いた履修科目最適化', venue: 'VLSI 設計技術研究会, Jun. 2024.', doi: null },
+          ],
         },
       ],
     },
@@ -367,6 +418,8 @@ export const ui = {
     works: {
       sectionNum: '03.',
       sectionTitle: 'Works',
+      detailLabel: 'Details',
+      detailFeaturesHeading: 'Key Features',
       projects: [
         {
           num: '01',
@@ -384,6 +437,7 @@ export const ui = {
             'AWS',
           ],
           links: [
+            { label: 'App', href: 'https://qlasop.vercel.app/' },
             { label: 'GitHub', href: 'https://github.com/t4ke1u/qlasop-app' },
             {
               label: 'IEEE Access',
@@ -391,6 +445,7 @@ export const ui = {
             },
           ],
           featured: true,
+          features: [],
         },
         {
           num: '02',
@@ -402,6 +457,7 @@ export const ui = {
           tech: ['FastAPI', 'Next.js', 'PostgreSQL', 'AWS', 'Figma'],
           links: [],
           featured: false,
+          features: [],
         },
         {
           num: '03',
@@ -413,6 +469,7 @@ export const ui = {
           tech: ['LangGraph', 'MCP', 'LLM APIs', 'FastAPI', 'Next.js'],
           links: [],
           featured: false,
+          features: [],
         },
         {
           num: '04',
@@ -424,6 +481,7 @@ export const ui = {
           tech: ['GitHub Actions', 'Claude Code', 'Kotlin / KMP'],
           links: [],
           featured: false,
+          features: [],
         },
         {
           num: '05',
@@ -435,6 +493,7 @@ export const ui = {
           tech: ['Swift / UIKit', 'Flutter', 'React', 'Google Cloud'],
           links: [],
           featured: false,
+          features: ['Event Search', 'QR Stamp Rally', 'Restaurant Coupon Lottery'],
         },
       ],
     },
@@ -505,6 +564,49 @@ export const ui = {
           authors: 'T. Ota et al.',
           venue: 'IEEE QCE 2025, vol.02, pp. 396–397.',
           doi: 'https://doi.org/10.1109/QCE65121.2025.10363',
+        },
+      ],
+      allPapersLabel: 'View all publications',
+      allPapersModalTitle: 'Publications',
+      allPaperCategories: [
+        {
+          heading: 'Journal Papers (peer-reviewed)',
+          items: [
+            { authors: 'T. Ota, K. Fukada, and N. Togawa', title: 'An Ising Machine Approach to the Personalized Course Selection Problem', venue: 'IEEE Access, vol.13, pp. 152148–152160, 2025.', doi: 'https://doi.org/10.1109/ACCESS.2025.3603606' },
+          ],
+        },
+        {
+          heading: "International Conferences (peer-reviewed)",
+          items: [
+            { authors: 'T. Ota, T. Shirai, M. Morita, K. Kimura, Y. Takita, and N. Togawa', title: 'Hybrid Quantum-Classical Framework based on subQUBO and pVSQA', venue: 'APS Global Physics Summit 2026.', doi: null },
+            { authors: 'R. Aoki, T. Ota, T. Shirai, and N. Togawa', title: 'Constraint-Parameterized Spin-Variable Reduction Method for QAP', venue: 'IEEE ICCE 2026.', doi: null },
+            { authors: 'T. Ota, T. Shirai, and N. Togawa', title: 'Course Selection Optimization using pVSQA on Quantum Computers', venue: 'IEEE ICCE-Berlin 2025, pp. 207–210.', doi: 'https://doi.org/10.1109/ICCE-Berlin67488.2025.11277633' },
+            { authors: 'K. Mita, T. Ota, and N. Togawa', title: 'SubQUBO Construction Based on Grid Reduction Method Using an Ising Machine', venue: 'IEEE QCE 2025, vol.02, pp. 486–487.', doi: 'https://doi.org/10.1109/QCE65121.2025.10408' },
+            { authors: 'T. Ota, T. Shirai, M. Morita, K. Kimura, Y. Takita, and N. Togawa', title: 'Evaluating pVSQA for Large-Sized Constrained Optimization on Quantum Simulator', venue: 'IEEE QCE 2025, vol.02, pp. 396–397.', doi: 'https://doi.org/10.1109/QCE65121.2025.10363' },
+            { authors: 'S. Inaba, T. Ota, C. Dogo, K. Saito, and N. Togawa', title: 'QUBO Simplification Method for Improving Solution Convergence Speed Using an Ising Machine', venue: 'IEEE QCE 2025, vol.02, pp. 492–493.', doi: 'https://doi.org/10.1109/QCE65121.2025.10411' },
+            { authors: 'T. Ota, K. Fukada, T. Shirai, and N. Togawa', title: 'Personalized Course Selection Optimization Using QAOA', venue: 'IEEE ICCE 2025, pp. 1–2.', doi: 'https://doi.org/10.1109/ICCE63647.2025.10930007' },
+            { authors: 'T. Ota, K. Fukada, and N. Togawa', title: 'Personalized Course Selection Optimization Using an Ising Machine', venue: 'IEEE QCE 2024, vol.02, pp. 430–431.', doi: 'https://doi.org/10.1109/QCE60285.2024.10340' },
+          ],
+        },
+        {
+          heading: 'International Conferences (non-peer-reviewed)',
+          items: [
+            { authors: 'T. Ota, K. Fukada, and N. Togawa', title: 'Optimizing Personalized Course Selection via an Ising Machine', venue: 'INQA 2024.', doi: null },
+          ],
+        },
+        {
+          heading: 'Domestic Conferences (Japanese)',
+          items: [
+            { authors: 'S. Takahashi, T. Ota, N. Togawa', title: 'Amusement Park Route Optimization Considering Dynamic Wait Times and Breaks Using an Ising Machine', venue: 'IEICE VLD, Mar. 2026.', doi: null },
+            { authors: 'R. Hasegawa, S. Tomita, T. Ota, N. Togawa', title: 'Solving and Evaluating the F1 Race Schedule Optimization Problem Using an Ising Machine', venue: 'IEICE VLD, Mar. 2026.', doi: null },
+            { authors: 'T. Ota, T. Shirai, N. Togawa', title: 'QUBO Construction Method Using Rank Learning for FMA', venue: 'Design Gaia 2025, Dec. 2025. ★Best Poster Award', doi: null },
+            { authors: 'K. Tanaka, S. Kaji, T. Ota, Y. Ikegami, S. Bao, N. Togawa', title: 'Multi-Day Itinerary Planning Using an Ising Machine and LLM', venue: 'Design Gaia 2025, Dec. 2025. ★Best Poster Award', doi: null },
+            { authors: 'R. Aoki, T. Ota, T. Shirai, N. Togawa', title: 'Spin-Variable Reduction Method Using Constraint Parameterization', venue: 'Design Gaia 2025, Dec. 2025.', doi: null },
+            { authors: 'T. Ota, T. Shirai, N. Togawa', title: 'A Study on Course Selection Optimization Using pVSQA', venue: 'IEICE VLD, Jun. 2025.', doi: null },
+            { authors: 'K. Mita, K. Fukada, T. Ota, N. Togawa', title: 'Evaluation of subQUBO Construction Using Grid Reduction with an Ising Machine', venue: 'IEICE VLD, Jun. 2025.', doi: null },
+            { authors: 'T. Ota, K. Fukada, T. Shirai, N. Togawa', title: 'A Study on Course Selection Optimization Using QAOA', venue: 'Design Gaia 2024, Dec. 2024.', doi: null },
+            { authors: 'T. Ota, K. Fukada, N. Togawa', title: 'Course Selection Optimization Using an Ising Machine', venue: 'IEICE VLD, Jun. 2024.', doi: null },
+          ],
         },
       ],
     },

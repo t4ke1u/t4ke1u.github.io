@@ -74,11 +74,57 @@ const t = ui[lang].research;
               </li>
             ))}
           </ul>
+          <button class="all-papers-btn" data-modal-open="all-papers-modal">
+            {t.allPapersLabel} ↗
+          </button>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- All papers modal -->
+<dialog id="all-papers-modal" class="modal">
+  <div class="modal-inner">
+    <div class="modal-header">
+      <h3 class="modal-title">{t.allPapersModalTitle}</h3>
+      <button class="modal-close" data-modal-close aria-label="Close">✕</button>
+    </div>
+    <div class="modal-body">
+      {t.allPaperCategories.map(cat => (
+        <div class="papers-category">
+          <h4 class="category-heading">{cat.heading}</h4>
+          <ul class="modal-paper-list">
+            {cat.items.map(item => (
+              <li class="modal-paper-item">
+                <div class="modal-paper-body">
+                  {item.doi
+                    ? <a href={item.doi} target="_blank" rel="noopener noreferrer" class="modal-paper-title">{item.title} ↗</a>
+                    : <p class="modal-paper-title">{item.title}</p>
+                  }
+                  <p class="modal-paper-meta">{item.authors} — {item.venue}</p>
+                </div>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</dialog>
+
+<script>
+  document.querySelectorAll('[data-modal-open]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = (btn as HTMLElement).dataset.modalOpen!;
+      (document.getElementById(id) as HTMLDialogElement).showModal();
+    });
+  });
+  document.querySelectorAll('dialog').forEach(dialog => {
+    dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
+    dialog.querySelector('[data-modal-close]')?.addEventListener('click', () => dialog.close());
+  });
+</script>
 
 <style>
   .research-layout {
@@ -220,7 +266,113 @@ const t = ui[lang].research;
     line-height: 1.5;
   }
 
+  .all-papers-btn {
+    margin-top: 1.25rem;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: var(--fs-body-sm);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--accent);
+    cursor: pointer;
+    transition: opacity 0.2s;
+    letter-spacing: 0.05em;
+  }
+  .all-papers-btn:hover { opacity: 0.7; }
+
+  /* Modal */
+  .modal {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    max-width: 720px;
+    width: 90vw;
+    max-height: 82vh;
+    padding: 0;
+    overflow: hidden;
+    color: var(--text-primary);
+  }
+  .modal[open] { display: flex; flex-direction: column; }
+  .modal::backdrop {
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .modal-inner { display: flex; flex-direction: column; height: 100%; }
+  .modal-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.5rem 2rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0;
+  }
+  .modal-title {
+    font-size: var(--fs-h2);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+  .modal-close {
+    background: none;
+    border: none;
+    color: var(--text-secondary);
+    font-size: 1rem;
+    cursor: pointer;
+    padding: 0.25rem 0.5rem;
+    border-radius: 2px;
+    transition: color 0.2s;
+    line-height: 1;
+  }
+  .modal-close:hover { color: var(--text-primary); }
+
+  .modal-body {
+    overflow-y: auto;
+    padding: 1.5rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .papers-category { display: flex; flex-direction: column; gap: 0.75rem; }
+  .category-heading {
+    font-size: var(--fs-body-sm);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+  }
+
+  .modal-paper-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+  }
+  .modal-paper-item {
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--border);
+  }
+  .modal-paper-title {
+    font-size: var(--fs-body-md);
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin-bottom: 0.2rem;
+    transition: color 0.2s;
+  }
+  a.modal-paper-title:hover { color: var(--accent); }
+  .modal-paper-meta {
+    font-size: var(--fs-body-sm);
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+
   @media (max-width: 900px) {
     .research-layout { grid-template-columns: 1fr; gap: 3rem; }
+  }
+  @media (max-width: 480px) {
+    .modal-header { padding: 1.25rem 1.25rem 1rem; }
+    .modal-body { padding: 1.25rem; }
   }
 </style>
