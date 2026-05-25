@@ -51,10 +51,7 @@ const t = ui[lang].works;
                 </div>
               )}
               {p.features.length > 0 && (
-                <button
-                  class="detail-btn"
-                  data-modal-open={`work-detail-${p.num}`}
-                >
+                <button class="detail-btn" data-modal-open={`work-detail-${p.num}`}>
                   {t.detailLabel} ↗
                 </button>
               )}
@@ -67,27 +64,27 @@ const t = ui[lang].works;
 </section>
 
 <!-- Works 05 detail modal -->
-<dialog id="work-detail-05" class="modal">
-  <div class="modal-inner">
-    <div class="modal-header">
+<dialog id="work-detail-05" class="wmodal">
+  <div class="wmodal-inner">
+    <div class="wmodal-header">
       <div>
-        <p class="modal-eyebrow">05. {t.projects[4].category}</p>
-        <h3 class="modal-title">{t.projects[4].title}</h3>
+        <p class="wmodal-eyebrow">05. {t.projects[4].category}</p>
+        <h3 class="wmodal-title">{t.projects[4].title}</h3>
       </div>
-      <button class="modal-close" data-modal-close aria-label="Close">✕</button>
+      <button class="wmodal-close" data-modal-close aria-label="Close">✕</button>
     </div>
-    <div class="modal-body">
-      <div class="modal-gallery">
-        <Image src={imgFestival1} alt="" widths={[300, 600]} sizes="200px" class="gallery-img" />
-        <Image src={imgFestival2} alt="" widths={[300, 600]} sizes="200px" class="gallery-img" />
-        <Image src={imgFestival3} alt="" widths={[300, 600]} sizes="200px" class="gallery-img" />
+    <div class="wmodal-body">
+      <div class="wmodal-gallery">
+        <Image src={imgFestival1} alt="アプリスクリーンショット1" widths={[300, 600]} sizes="200px" />
+        <Image src={imgFestival2} alt="アプリスクリーンショット2" widths={[300, 600]} sizes="200px" />
+        <Image src={imgFestival3} alt="アプリスクリーンショット3" widths={[300, 600]} sizes="200px" />
       </div>
-      <div class="modal-features">
-        <h4 class="features-heading">{t.detailFeaturesHeading}</h4>
-        <ul class="features-list">
+      <div class="wmodal-features">
+        <h4 class="wmodal-features-heading">{t.detailFeaturesHeading}</h4>
+        <ul class="wmodal-features-list">
           {t.projects[4].features.map(f => (
-            <li class="feature-item">
-              <span class="feature-dot"></span>
+            <li class="wmodal-feature-item">
+              <span class="wmodal-feature-dot"></span>
               {f}
             </li>
           ))}
@@ -96,19 +93,6 @@ const t = ui[lang].works;
     </div>
   </div>
 </dialog>
-
-<script>
-  document.querySelectorAll('[data-modal-open]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = (btn as HTMLElement).dataset.modalOpen!;
-      (document.getElementById(id) as HTMLDialogElement).showModal();
-    });
-  });
-  document.querySelectorAll('dialog').forEach(dialog => {
-    dialog.addEventListener('click', e => { if (e.target === dialog) dialog.close(); });
-    dialog.querySelector('[data-modal-close]')?.addEventListener('click', () => dialog.close());
-  });
-</script>
 
 <style>
   .works-list {
@@ -230,8 +214,8 @@ const t = ui[lang].works;
   }
   .detail-btn:hover { color: var(--accent); }
 
-  /* Modal */
-  .modal {
+  /* ── Works modal ─────────────────────────────────── */
+  .wmodal {
     background: var(--bg);
     border: 1px solid var(--border);
     border-radius: 8px;
@@ -239,18 +223,29 @@ const t = ui[lang].works;
     width: 90vw;
     max-height: 82vh;
     padding: 0;
-    overflow: hidden;
     color: var(--text-primary);
+    /* UA stylesheet hides when not [open]; we switch to flex when visible */
   }
-  .modal[open] { display: flex; flex-direction: column; }
-  .modal::backdrop {
+  .wmodal[open] {
+    display: flex;
+    flex-direction: column;
+  }
+  .wmodal::backdrop {
     background: rgba(0, 0, 0, 0.72);
     backdrop-filter: blur(4px);
     -webkit-backdrop-filter: blur(4px);
   }
 
-  .modal-inner { display: flex; flex-direction: column; height: 100%; }
-  .modal-header {
+  .wmodal-inner {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+    overflow: hidden;  /* clip to border-radius */
+    border-radius: 8px;
+    flex: 1;
+  }
+
+  .wmodal-header {
     display: flex;
     align-items: flex-start;
     justify-content: space-between;
@@ -259,19 +254,19 @@ const t = ui[lang].works;
     flex-shrink: 0;
     gap: 1rem;
   }
-  .modal-eyebrow {
+  .wmodal-eyebrow {
     font-size: var(--fs-body-sm);
     font-family: 'SF Mono', 'Fira Code', monospace;
     color: var(--accent);
     margin-bottom: 0.35rem;
   }
-  .modal-title {
+  .wmodal-title {
     font-size: var(--fs-h2);
     font-weight: 600;
     color: var(--text-primary);
     line-height: 1.3;
   }
-  .modal-close {
+  .wmodal-close {
     background: none;
     border: none;
     color: var(--text-secondary);
@@ -283,9 +278,11 @@ const t = ui[lang].works;
     line-height: 1;
     flex-shrink: 0;
   }
-  .modal-close:hover { color: var(--text-primary); }
+  .wmodal-close:hover { color: var(--text-primary); }
 
-  .modal-body {
+  .wmodal-body {
+    flex: 1;
+    min-height: 0;
     overflow-y: auto;
     padding: 1.5rem 2rem 2rem;
     display: flex;
@@ -293,20 +290,21 @@ const t = ui[lang].works;
     gap: 1.5rem;
   }
 
-  .modal-gallery {
+  .wmodal-gallery {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 0.75rem;
   }
-  .gallery-img {
+  /* Astro <Image> renders <img>; target via :global since it's a child component */
+  .wmodal-gallery :global(img) {
     width: 100%;
-    height: 260px;
+    height: 280px;
     object-fit: cover;
     border-radius: 4px;
     display: block;
   }
 
-  .features-heading {
+  .wmodal-features-heading {
     font-size: var(--fs-body-sm);
     font-family: 'SF Mono', 'Fira Code', monospace;
     color: var(--accent);
@@ -314,19 +312,19 @@ const t = ui[lang].works;
     text-transform: uppercase;
     margin-bottom: 0.75rem;
   }
-  .features-list {
+  .wmodal-features-list {
     display: flex;
     flex-direction: column;
     gap: 0.5rem;
   }
-  .feature-item {
+  .wmodal-feature-item {
     display: flex;
     align-items: center;
     gap: 0.6rem;
     font-size: var(--fs-body);
     color: var(--text-secondary);
   }
-  .feature-dot {
+  .wmodal-feature-dot {
     width: 5px;
     height: 5px;
     border-radius: 50%;
@@ -337,13 +335,11 @@ const t = ui[lang].works;
   @media (max-width: 768px) {
     .works-list { grid-template-columns: 1fr; }
     .project-card--featured { grid-column: span 1; }
-    .modal-gallery { grid-template-columns: repeat(3, 1fr); }
-    .gallery-img { height: 180px; }
   }
   @media (max-width: 480px) {
-    .modal-header { padding: 1.25rem 1.25rem 1rem; }
-    .modal-body { padding: 1.25rem; }
-    .modal-gallery { grid-template-columns: 1fr; }
-    .gallery-img { height: 300px; }
+    .wmodal-header { padding: 1.25rem; }
+    .wmodal-body { padding: 1.25rem; }
+    .wmodal-gallery { grid-template-columns: 1fr; }
+    .wmodal-gallery :global(img) { height: 300px; }
   }
 </style>
