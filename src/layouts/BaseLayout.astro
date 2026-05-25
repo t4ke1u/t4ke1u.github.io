@@ -30,6 +30,19 @@ const {
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap"
       rel="stylesheet"
     />
+    <!-- 言語自動リダイレクト（初回セッションのみ） -->
+    <script is:inline>
+      (function () {
+        if (!sessionStorage.getItem('lang-redirected')) {
+          sessionStorage.setItem('lang-redirected', '1');
+          var isJa     = (navigator.language || '').toLowerCase().startsWith('ja');
+          var isEnPage = location.pathname.startsWith('/en');
+          if (isJa && isEnPage)   { location.replace('/');    }
+          else if (!isJa && !isEnPage) { location.replace('/en/'); }
+        }
+      })();
+    </script>
+
     <!-- テーマ初期化（描画前に実行してFOUCを防止） -->
     <script is:inline>
       (function () {
