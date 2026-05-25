@@ -120,7 +120,7 @@ const {
           interactivity: {
             detect_on: 'window',
             events: {
-              onhover: { enable: true, mode: 'grab' },
+              onhover: { enable: !('ontouchstart' in window), mode: 'grab' },
               onclick: { enable: false },
               resize: true,
             },
