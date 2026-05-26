@@ -143,7 +143,11 @@ export const ui = {
             },
           ],
           featured: true,
-          features: [],
+          features: [
+            '学生の趣向・登校日数・空きコマ・単位数を同時に考慮した数理モデルを独自開発',
+            '量子・古典ハイブリッドアルゴリズム pVSQA を履修最適化に初適用',
+            'ゲート式量子コンピュータで500変数の大規模インスタンスの求解に成功',
+          ],
         },
         {
           num: '02',
@@ -167,7 +171,11 @@ export const ui = {
           tech: ['LangGraph', 'MCP', 'LLM APIs', 'FastAPI', 'Next.js'],
           links: [],
           featured: false,
-          features: [],
+          features: [
+            '自然言語で指示するだけで経路・スケジュールを量子最適化エンジンで最適化',
+            'Strands Agents を使い MCP で最適化・RAG・Web検索エージェントをオーケストレーション',
+            '社内検証まで完遂し、実用 PoC として評価',
+          ],
         },
         {
           num: '04',
@@ -464,7 +472,11 @@ export const ui = {
             },
           ],
           featured: true,
-          features: [],
+          features: [
+            'Original mathematical model accounting for preferences, commute days, free periods, and credit requirements simultaneously',
+            'First application of the quantum-classical hybrid algorithm pVSQA to course selection optimization',
+            'Successfully solved 500-variable large-scale instances on a gate-model quantum computer',
+          ],
         },
         {
           num: '02',
@@ -488,7 +500,11 @@ export const ui = {
           tech: ['LangGraph', 'MCP', 'LLM APIs', 'FastAPI', 'Next.js'],
           links: [],
           featured: false,
-          features: [],
+          features: [
+            'Natural language input drives the quantum optimization engine for route and schedule planning',
+            'Strands Agents orchestrate optimization, RAG, and web search agents via MCP protocol',
+            'Validated internally as a working proof-of-concept',
+          ],
         },
         {
           num: '04',
