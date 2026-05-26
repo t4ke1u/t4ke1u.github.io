@@ -1,0 +1,276 @@
+---
+import { Image } from 'astro:assets';
+import { type Lang, ui } from '../i18n';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import imgWorks01 from '../assets/images/works01-problem.png';
+import imgWorks03 from '../assets/images/works03-architecture.png';
+import imgFestival1 from '../assets/images/festival-app-screen1.png';
+import imgFestival2 from '../assets/images/festival-app-screen2.png';
+import imgFestival3 from '../assets/images/festival-app-screen3.jpg';
+
+interface Props {
+  lang: Lang;
+  num: '01' | '03' | '05';
+}
+
+const { lang, num } = Astro.props;
+const t = ui[lang].works;
+const indexMap = { '01': 0, '03': 2, '05': 4 } as const;
+const project = t.projects[indexMap[num]];
+const backHref = lang === 'ja' ? '/#works' : '/en/#works';
+const backLabel = lang === 'ja' ? '← Works' : '← Works';
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${project.title} — Portfolio`}
+  description={project.description}
+>
+  <main class="detail-page">
+    <div class="detail-container">
+
+      <a href={backHref} class="back-link">{backLabel}</a>
+
+      <header class="detail-header">
+        <p class="detail-eyebrow">{num}. {project.category}</p>
+        <h1 class="detail-title">{project.title}</h1>
+        <p class="detail-period">{project.period}</p>
+      </header>
+
+      {num === '01' && (
+        <div class="detail-visual">
+          <Image
+            src={imgWorks01}
+            alt="履修最適化 問題説明図"
+            widths={[600, 1200]}
+            sizes="(max-width: 720px) 92vw, 680px"
+          />
+        </div>
+      )}
+      {num === '03' && (
+        <div class="detail-visual">
+          <Image
+            src={imgWorks03}
+            alt="LLM × 量子最適化 アーキテクチャ図"
+            widths={[600, 1200]}
+            sizes="(max-width: 720px) 92vw, 680px"
+          />
+        </div>
+      )}
+      {num === '05' && (
+        <div class="detail-gallery">
+          <div class="gallery-phones">
+            <Image src={imgFestival1} alt="アプリスクリーンショット1" widths={[300, 600]} sizes="130px" class="phone-back" />
+            <Image src={imgFestival2} alt="アプリスクリーンショット2" widths={[300, 600]} sizes="120px" class="phone-front" />
+          </div>
+          <div class="gallery-identity">
+            <Image src={imgFestival3} alt="AppRiko ロゴ" widths={[120, 240]} sizes="52px" />
+            <span class="gallery-app-name">{t.festivalAppName}</span>
+          </div>
+        </div>
+      )}
+
+      <p class="detail-description">{project.description}</p>
+
+      <section class="detail-features">
+        <h2 class="detail-section-title">{t.detailFeaturesHeading}</h2>
+        <ul class="feature-list">
+          {project.features.map(f => (
+            <li class="feature-item">
+              <span class="feature-dot" />
+              {f}
+            </li>
+          ))}
+        </ul>
+      </section>
+
+      <footer class="detail-footer">
+        <div class="detail-tech">
+          {project.tech.map(tech => <span class="tech-tag">{tech}</span>)}
+        </div>
+        {project.links.length > 0 && (
+          <div class="detail-links">
+            {project.links.map(link => (
+              <a href={link.href} target="_blank" rel="noopener noreferrer" class="ext-link">
+                {link.label} ↗
+              </a>
+            ))}
+          </div>
+        )}
+      </footer>
+
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .detail-page {
+    min-height: calc(100vh - var(--nav-height));
+    padding: calc(var(--nav-height) + 2rem) 0 5rem;
+  }
+
+  .detail-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .back-link {
+    font-size: var(--fs-body-sm);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+    align-self: flex-start;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .detail-header {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+  .detail-eyebrow {
+    font-size: var(--fs-body-sm);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--accent);
+  }
+  .detail-title {
+    font-size: var(--fs-h1);
+    font-weight: 600;
+    color: var(--text-primary);
+    line-height: 1.3;
+  }
+  .detail-period {
+    font-size: var(--fs-body-sm);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--text-secondary);
+  }
+
+  .detail-visual img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
+    border: 1px solid var(--border);
+  }
+
+  /* Gallery (Works 05) */
+  .detail-gallery {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    flex-wrap: wrap;
+  }
+  .gallery-phones {
+    display: flex;
+    align-items: flex-end;
+    flex-shrink: 0;
+  }
+  .phone-back {
+    height: 220px;
+    width: auto;
+    border-radius: 14px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    position: relative;
+    z-index: 1;
+  }
+  .phone-front {
+    height: 200px;
+    width: auto;
+    border-radius: 12px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.45);
+    margin-left: -36px;
+    margin-top: 24px;
+    position: relative;
+    z-index: 2;
+  }
+  .gallery-identity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+    flex-shrink: 0;
+  }
+  .gallery-identity img {
+    width: 52px;
+    height: 52px;
+    border-radius: 12px;
+  }
+  .gallery-app-name {
+    font-weight: 600;
+    font-size: 1.4rem;
+    color: var(--text-primary);
+  }
+
+  .detail-description {
+    font-size: var(--fs-body-md);
+    line-height: 1.75;
+    color: var(--text-secondary);
+  }
+
+  .detail-section-title {
+    font-size: var(--fs-h3);
+    font-weight: 600;
+    color: var(--text-primary);
+    margin-bottom: 0.75rem;
+  }
+  .feature-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  .feature-item {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: var(--fs-body);
+    color: var(--text-secondary);
+  }
+  .feature-dot {
+    width: 5px;
+    height: 5px;
+    border-radius: 50%;
+    background: var(--accent);
+    flex-shrink: 0;
+  }
+
+  .detail-footer {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border);
+  }
+  .detail-tech {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+  }
+  .tech-tag {
+    font-size: var(--fs-body-sm);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--accent);
+    background: rgba(100, 255, 218, 0.06);
+    padding: 0.2rem 0.5rem;
+    border-radius: 2px;
+    white-space: nowrap;
+  }
+  .detail-links {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .ext-link {
+    font-size: var(--fs-body-md);
+    color: var(--text-secondary);
+    transition: color 0.2s;
+    white-space: nowrap;
+  }
+  .ext-link:hover { color: var(--accent); }
+</style>

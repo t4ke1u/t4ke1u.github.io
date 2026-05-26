@@ -53,9 +53,14 @@ const t = ui[lang].works;
                 </div>
               )}
               {p.features.length > 0 && (
-                <button class="detail-btn" data-modal-open={`work-detail-${p.num}`}>
-                  {t.detailLabel} ↗
-                </button>
+                <>
+                  <button class="detail-btn" data-modal-open={`work-detail-${p.num}`}>
+                    {t.detailLabel} ↗
+                  </button>
+                  <a class="detail-link" href={`${lang === 'en' ? '/en' : ''}/works/${p.num}`}>
+                    {t.detailLabel} ↗
+                  </a>
+                </>
               )}
             </div>
           </div>
@@ -266,7 +271,10 @@ const t = ui[lang].works;
   }
   .project-link:hover { color: var(--accent); }
 
-  .detail-btn {
+  .detail-btn,
+  .detail-link {
+    appearance: none;
+    -webkit-appearance: none;
     background: none;
     border: none;
     padding: 0;
@@ -276,8 +284,22 @@ const t = ui[lang].works;
     transition: color 0.2s;
     white-space: nowrap;
     font-family: inherit;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
   }
-  .detail-btn:hover { color: var(--accent); }
+  .detail-btn:hover,
+  .detail-link:hover { color: var(--accent); }
+
+  /* 769px 以上: ボタンを表示、リンクを非表示 */
+  @media (min-width: 769px) {
+    .detail-link { display: none; }
+  }
+
+  /* 768px 以下: リンクを表示、ボタンを非表示 */
+  @media (max-width: 768px) {
+    .detail-btn  { display: none; }
+    .detail-link { display: inline; }
+  }
 
   /* ── Works modal ─────────────────────────────────── */
   .wmodal {
