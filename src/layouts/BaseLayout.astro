@@ -2,6 +2,10 @@
 
 
 
+
+
+
+
 import Navigation from '../components/Navigation.astro';
 import '../styles/global.css';
 import type { Lang } from '../i18n';
@@ -88,19 +92,20 @@ const {
 
     <!-- Modal management — single event delegation for all dialogs on the page -->
     <script is:inline>
-      (function () {
-        document.addEventListener('cancel', function (e) {
+      (() => {
+        document.addEventListener('cancel', (e) => {
           if (e.target.tagName === 'DIALOG') document.body.style.overflow = '';
         }, true);
 
-        document.addEventListener('click', function (e) {
+        document.addEventListener('click', (e) => {
           var el = e.target;
+          var opener = null, id = '', dlg = null, closer = null, d = null;
 
           /* Open */
-          var opener = el.closest('[data-modal-open]');
+          opener = el.closest('[data-modal-open]');
           if (opener) {
-            var id = opener.getAttribute('data-modal-open');
-            var dlg = document.getElementById(id);
+            id = opener.getAttribute('data-modal-open');
+            dlg = document.getElementById(id);
             if (dlg && !dlg.open) {
               dlg.showModal();
               document.body.style.overflow = 'hidden';
@@ -109,9 +114,9 @@ const {
           }
 
           /* Close via ✕ button */
-          var closer = el.closest('[data-modal-close]');
+          closer = el.closest('[data-modal-close]');
           if (closer) {
-            var d = closer.closest('dialog');
+            d = closer.closest('dialog');
             if (d) { d.close(); document.body.style.overflow = ''; }
             return;
           }

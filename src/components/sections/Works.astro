@@ -2,14 +2,17 @@
 
 
 
-import { Image } from 'astro:assets';
-import { type Lang, ui } from '../../i18n';
 
+
+
+
+import { Image } from 'astro:assets';
 import imgFestival1 from '../../assets/images/festival-app-screen1.png';
 import imgFestival2 from '../../assets/images/festival-app-screen2.png';
 import imgFestival3 from '../../assets/images/festival-app-screen3.jpg';
 import imgWorks01Problem from '../../assets/images/works01-problem.png';
 import imgWorks03Architecture from '../../assets/images/works03-architecture.png';
+import { type Lang, ui } from '../../i18n';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
@@ -53,9 +56,14 @@ const t = ui[lang].works;
                 </div>
               )}
               {p.features.length > 0 && (
-                <button class="detail-btn" data-modal-open={`work-detail-${p.num}`}>
-                  {t.detailLabel} ↗
-                </button>
+                <>
+                  <button class="detail-btn" type="button" data-modal-open={`work-detail-${p.num}`}>
+                    {t.detailLabel} ↗
+                  </button>
+                  <a class="detail-link" href={`${lang === 'en' ? '/en' : ''}/works/${p.num}`}>
+                    {t.detailLabel} ↗
+                  </a>
+                </>
               )}
             </div>
           </div>
@@ -73,7 +81,7 @@ const t = ui[lang].works;
         <p class="wmodal-eyebrow">01. {t.projects[0].category}</p>
         <h3 class="wmodal-title">{t.projects[0].title}</h3>
       </div>
-      <button class="wmodal-close" data-modal-close aria-label="Close">✕</button>
+      <button class="wmodal-close" type="button" data-modal-close aria-label="Close">✕</button>
     </div>
     <div class="wmodal-body">
       <div class="wmodal-diagram">
@@ -102,7 +110,7 @@ const t = ui[lang].works;
         <p class="wmodal-eyebrow">03. {t.projects[2].category}</p>
         <h3 class="wmodal-title">{t.projects[2].title}</h3>
       </div>
-      <button class="wmodal-close" data-modal-close aria-label="Close">✕</button>
+      <button class="wmodal-close" type="button" data-modal-close aria-label="Close">✕</button>
     </div>
     <div class="wmodal-body">
       <div class="wmodal-diagram">
@@ -131,7 +139,7 @@ const t = ui[lang].works;
         <p class="wmodal-eyebrow">05. {t.projects[4].category}</p>
         <h3 class="wmodal-title">{t.projects[4].title}</h3>
       </div>
-      <button class="wmodal-close" data-modal-close aria-label="Close">✕</button>
+      <button class="wmodal-close" type="button" data-modal-close aria-label="Close">✕</button>
     </div>
     <div class="wmodal-body">
       <div class="wmodal-gallery">
@@ -266,7 +274,10 @@ const t = ui[lang].works;
   }
   .project-link:hover { color: var(--accent); }
 
-  .detail-btn {
+  .detail-btn,
+  .detail-link {
+    appearance: none;
+    -webkit-appearance: none;
     background: none;
     border: none;
     padding: 0;
@@ -276,8 +287,22 @@ const t = ui[lang].works;
     transition: color 0.2s;
     white-space: nowrap;
     font-family: inherit;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
   }
-  .detail-btn:hover { color: var(--accent); }
+  .detail-btn:hover,
+  .detail-link:hover { color: var(--accent); }
+
+  /* 769px 以上: ボタンを表示、リンクを非表示 */
+  @media (min-width: 769px) {
+    .detail-link { display: none; }
+  }
+
+  /* 768px 以下: リンクを表示、ボタンを非表示 */
+  @media (max-width: 768px) {
+    .detail-btn  { display: none; }
+    .detail-link { display: inline; }
+  }
 
   /* ── Works modal ─────────────────────────────────── */
   .wmodal {

@@ -1,0 +1,126 @@
+---
+import { type Lang, ui } from '../i18n';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+interface Props { lang: Lang; }
+
+const { lang } = Astro.props;
+const t = ui[lang].research;
+const backHref = lang === 'ja' ? '/#research' : '/en/#research';
+const backLabel = '← Research';
+---
+
+<BaseLayout
+  lang={lang}
+  title={`${t.allPapersModalTitle} — Portfolio`}
+  description={t.overviewTitle}
+>
+  <main class="pubs-page">
+    <div class="pubs-container">
+
+      <a href={backHref} class="back-link">{backLabel}</a>
+
+      <header class="pubs-header">
+        <h1 class="pubs-title">{t.allPapersModalTitle}</h1>
+      </header>
+
+      <div class="pubs-body">
+        {t.allPaperCategories.map(cat => (
+          <section class="pubs-category">
+            <h2 class="pubs-category-heading">{cat.heading}</h2>
+            <ul class="pubs-list">
+              {cat.items.map(item => (
+                <li class="pubs-item">
+                  {item.doi
+                    ? <a href={item.doi} target="_blank" rel="noopener noreferrer" class="pubs-item-title">{item.title} ↗</a>
+                    : <p class="pubs-item-title">{item.title}</p>
+                  }
+                  <p class="pubs-item-meta">{item.authors} — {item.venue}</p>
+                </li>
+              ))}
+            </ul>
+          </section>
+        ))}
+      </div>
+
+    </div>
+  </main>
+</BaseLayout>
+
+<style>
+  .pubs-page {
+    min-height: calc(100vh - var(--nav-height));
+    padding: calc(var(--nav-height) + 2rem) 0 5rem;
+  }
+
+  .pubs-container {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .back-link {
+    font-size: var(--fs-body-sm);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--text-secondary);
+    transition: color 0.2s;
+    align-self: flex-start;
+  }
+  .back-link:hover { color: var(--accent); }
+
+  .pubs-title {
+    font-size: var(--fs-h1);
+    font-weight: 600;
+    color: var(--text-primary);
+  }
+
+  .pubs-body {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+  }
+
+  .pubs-category-heading {
+    font-size: var(--fs-body-sm);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--accent);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 0.75rem;
+  }
+
+  .pubs-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.9rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  .pubs-item {
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--border);
+  }
+
+  .pubs-item-title {
+    font-size: var(--fs-body-md);
+    color: var(--text-primary);
+    line-height: 1.5;
+    margin-bottom: 0.2rem;
+    transition: color 0.2s;
+    display: block;
+  }
+  a.pubs-item-title:hover { color: var(--accent); }
+
+  .pubs-item-meta {
+    font-size: var(--fs-body-sm);
+    color: var(--text-secondary);
+    line-height: 1.5;
+  }
+</style>
