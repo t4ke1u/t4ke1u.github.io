@@ -2,6 +2,10 @@
 
 
 
+
+
+
+
 import { type Lang, ui } from '../../i18n';
 
 interface Props { lang: Lang; }
@@ -74,14 +78,12 @@ const t = ui[lang].research;
               </li>
             ))}
           </ul>
-          <>
-            <button class="all-papers-btn" data-modal-open="rmodal-all-papers">
-              {t.allPapersLabel} ↗
-            </button>
-            <a class="all-papers-link" href={lang === 'en' ? '/en/research/publications' : '/research/publications'}>
-              {t.allPapersLabel} ↗
-            </a>
-          </>
+          <button class="all-papers-btn" type="button" data-modal-open="rmodal-all-papers">
+            {t.allPapersLabel} ↗
+          </button>
+          <a class="all-papers-link" href={lang === 'en' ? '/en/research/publications' : '/research/publications'}>
+            {t.allPapersLabel} ↗
+          </a>
         </div>
       </div>
     </div>
@@ -93,7 +95,7 @@ const t = ui[lang].research;
   <div class="rmodal-inner">
     <div class="rmodal-header">
       <h3 class="rmodal-title">{t.allPapersModalTitle}</h3>
-      <button class="rmodal-close" data-modal-close aria-label="Close">✕</button>
+      <button class="rmodal-close" type="button" data-modal-close aria-label="Close">✕</button>
     </div>
     <div class="rmodal-body">
       {t.allPaperCategories.map(cat => (
