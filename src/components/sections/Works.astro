@@ -113,7 +113,7 @@ const t = ui[lang].works;
       <button class="wmodal-close" type="button" data-modal-close aria-label="Close">✕</button>
     </div>
     <div class="wmodal-body">
-      <div class="wmodal-diagram">
+      <div class="wmodal-diagram white-bg">
         <Image src={imgWorks03Architecture} alt="LLM × 量子最適化 アーキテクチャ図" widths={[600, 1200]} sizes="(max-width: 680px) 90vw, 600px" loading="eager" decoding="sync" />
       </div>
       <div class="wmodal-features">
@@ -385,6 +385,12 @@ const t = ui[lang].works;
     height: auto;
     display: block;
     border-radius: 6px;
+  }
+
+  .wmodal-diagram.white-bg {
+    background-color: #ffffff;
+    border-radius: 6px;
+    padding: 1rem;
   }
 
   .wmodal-gallery {
