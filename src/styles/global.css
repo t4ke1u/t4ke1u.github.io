@@ -227,38 +227,41 @@ ul {
 }
 
 /* ── Modal open / close transition ─────────────── */
-dialog {
-  opacity: 0;
-  transform: scale(0.96) translateY(10px);
-  transition:
-    opacity    0.2s ease,
-    transform  0.2s ease,
-    display    0.2s allow-discrete,
-    overlay    0.2s allow-discrete;
-}
-dialog[open] {
-  opacity: 1;
-  transform: none;
-}
-@starting-style {
-  dialog[open] {
+/* @starting-style + allow-discrete は Chrome 117+ / Firefox 129+ / Safari 17.4+ のみ対応 */
+@supports (transition-behavior: allow-discrete) and (overlay: auto) {
+  dialog {
     opacity: 0;
     transform: scale(0.96) translateY(10px);
+    transition:
+      opacity    0.2s ease,
+      transform  0.2s ease,
+      display    0.2s allow-discrete,
+      overlay    0.2s allow-discrete;
   }
-}
+  dialog[open] {
+    opacity: 1;
+    transform: none;
+  }
+  @starting-style {
+    dialog[open] {
+      opacity: 0;
+      transform: scale(0.96) translateY(10px);
+    }
+  }
 
-dialog::backdrop {
-  opacity: 0;
-  transition:
-    opacity  0.2s ease,
-    display  0.2s allow-discrete,
-    overlay  0.2s allow-discrete;
-}
-dialog[open]::backdrop {
-  opacity: 1;
-}
-@starting-style {
-  dialog[open]::backdrop {
+  dialog::backdrop {
     opacity: 0;
+    transition:
+      opacity  0.2s ease,
+      display  0.2s allow-discrete,
+      overlay  0.2s allow-discrete;
+  }
+  dialog[open]::backdrop {
+    opacity: 1;
+  }
+  @starting-style {
+    dialog[open]::backdrop {
+      opacity: 0;
+    }
   }
 }

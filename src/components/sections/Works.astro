@@ -8,6 +8,8 @@ import { type Lang, ui } from '../../i18n';
 import imgFestival1 from '../../assets/images/festival-app-screen1.png';
 import imgFestival2 from '../../assets/images/festival-app-screen2.png';
 import imgFestival3 from '../../assets/images/festival-app-screen3.jpg';
+import imgWorks01Problem from '../../assets/images/works01-problem.png';
+import imgWorks03Architecture from '../../assets/images/works03-architecture.png';
 
 interface Props { lang: Lang; }
 const { lang } = Astro.props;
@@ -62,6 +64,64 @@ const t = ui[lang].works;
     </div>
   </div>
 </section>
+
+<!-- Works 01 detail modal -->
+<dialog id="work-detail-01" class="wmodal">
+  <div class="wmodal-inner">
+    <div class="wmodal-header">
+      <div>
+        <p class="wmodal-eyebrow">01. {t.projects[0].category}</p>
+        <h3 class="wmodal-title">{t.projects[0].title}</h3>
+      </div>
+      <button class="wmodal-close" data-modal-close aria-label="Close">✕</button>
+    </div>
+    <div class="wmodal-body">
+      <div class="wmodal-diagram">
+        <Image src={imgWorks01Problem} alt="履修最適化 問題説明図" widths={[600, 1200]} sizes="(max-width: 680px) 90vw, 600px" loading="eager" decoding="sync" />
+      </div>
+      <div class="wmodal-features">
+        <h4 class="wmodal-features-heading">{t.detailFeaturesHeading}</h4>
+        <ul class="wmodal-features-list">
+          {t.projects[0].features.map(f => (
+            <li class="wmodal-feature-item">
+              <span class="wmodal-feature-dot"></span>
+              {f}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</dialog>
+
+<!-- Works 03 detail modal -->
+<dialog id="work-detail-03" class="wmodal">
+  <div class="wmodal-inner">
+    <div class="wmodal-header">
+      <div>
+        <p class="wmodal-eyebrow">03. {t.projects[2].category}</p>
+        <h3 class="wmodal-title">{t.projects[2].title}</h3>
+      </div>
+      <button class="wmodal-close" data-modal-close aria-label="Close">✕</button>
+    </div>
+    <div class="wmodal-body">
+      <div class="wmodal-diagram">
+        <Image src={imgWorks03Architecture} alt="LLM × 量子最適化 アーキテクチャ図" widths={[600, 1200]} sizes="(max-width: 680px) 90vw, 600px" loading="eager" decoding="sync" />
+      </div>
+      <div class="wmodal-features">
+        <h4 class="wmodal-features-heading">{t.detailFeaturesHeading}</h4>
+        <ul class="wmodal-features-list">
+          {t.projects[2].features.map(f => (
+            <li class="wmodal-feature-item">
+              <span class="wmodal-feature-dot"></span>
+              {f}
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+  </div>
+</dialog>
 
 <!-- Works 05 detail modal -->
 <dialog id="work-detail-05" class="wmodal">
@@ -293,6 +353,13 @@ const t = ui[lang].works;
     display: flex;
     flex-direction: column;
     gap: 1.5rem;
+  }
+
+  .wmodal-diagram img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 6px;
   }
 
   .wmodal-gallery {
