@@ -74,11 +74,42 @@ const t = ui[lang].research;
               </li>
             ))}
           </ul>
+          <button class="all-papers-btn" data-modal-open="rmodal-all-papers">
+            {t.allPapersLabel} ↗
+          </button>
         </div>
       </div>
     </div>
   </div>
 </section>
+
+<!-- All papers modal -->
+<dialog id="rmodal-all-papers" class="rmodal">
+  <div class="rmodal-inner">
+    <div class="rmodal-header">
+      <h3 class="rmodal-title">{t.allPapersModalTitle}</h3>
+      <button class="rmodal-close" data-modal-close aria-label="Close">✕</button>
+    </div>
+    <div class="rmodal-body">
+      {t.allPaperCategories.map(cat => (
+        <div class="rmodal-category">
+          <h4 class="rmodal-category-heading">{cat.heading}</h4>
+          <ul class="rmodal-paper-list">
+            {cat.items.map(item => (
+              <li class="rmodal-paper-item">
+                {item.doi
+                  ? <a href={item.doi} target="_blank" rel="noopener noreferrer" class="rmodal-paper-title">{item.title} ↗</a>
+                  : <p class="rmodal-paper-title">{item.title}</p>
+                }
+                <p class="rmodal-paper-meta">{item.authors} — {item.venue}</p>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  </div>
+</dialog>
 
 <style>
   .research-layout {
@@ -150,77 +181,128 @@ const t = ui[lang].research;
     margin-bottom: 1rem;
   }
 
-  .award-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
-  }
-  .award-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 0.75rem;
-  }
+  .award-list { display: flex; flex-direction: column; gap: 1rem; }
+  .award-item { display: flex; align-items: flex-start; gap: 0.75rem; }
   .award-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    margin-top: 0.45rem;
-    flex-shrink: 0;
+    width: 6px; height: 6px; border-radius: 50%;
+    background: var(--accent); margin-top: 0.45rem; flex-shrink: 0;
   }
   .award-title {
-    font-size: var(--fs-h3);
-    font-weight: 500;
-    color: var(--text-primary);
-    line-height: 1.4;
-    margin-bottom: 0.15rem;
+    font-size: var(--fs-h3); font-weight: 500;
+    color: var(--text-primary); line-height: 1.4; margin-bottom: 0.15rem;
   }
-  .award-org {
-    font-size: var(--fs-body-sm);
-    color: var(--text-secondary);
-  }
+  .award-org { font-size: var(--fs-body-sm); color: var(--text-secondary); }
 
-  .paper-list {
-    display: flex;
-    flex-direction: column;
-    gap: 1.1rem;
-  }
+  .paper-list { display: flex; flex-direction: column; gap: 1.1rem; }
   .paper-item {
-    display: grid;
-    grid-template-columns: 5.5rem 1fr;
-    gap: 0.75rem;
-    align-items: start;
-    padding-bottom: 1.1rem;
-    border-bottom: 1px solid var(--border);
+    display: grid; grid-template-columns: 5.5rem 1fr;
+    gap: 0.75rem; align-items: start;
+    padding-bottom: 1.1rem; border-bottom: 1px solid var(--border);
   }
   .paper-item:last-child { border-bottom: none; padding-bottom: 0; }
   .paper-type {
-    font-size: var(--fs-body-sm);
-    font-family: 'SF Mono', 'Fira Code', monospace;
-    color: var(--accent);
-    background: rgba(100, 255, 218, 0.07);
-    padding: 0.2rem 0.4rem;
-    border-radius: 2px;
-    white-space: nowrap;
-    text-align: center;
-    margin-top: 0.1rem;
-    display: block;
+    font-size: var(--fs-body-sm); font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--accent); background: rgba(100, 255, 218, 0.07);
+    padding: 0.2rem 0.4rem; border-radius: 2px;
+    white-space: nowrap; text-align: center; margin-top: 0.1rem; display: block;
   }
   .paper-title {
-    font-size: var(--fs-body-md);
-    color: var(--text-primary);
-    line-height: 1.5;
-    margin-bottom: 0.25rem;
-    transition: color 0.2s;
+    font-size: var(--fs-body-md); color: var(--text-primary);
+    line-height: 1.5; margin-bottom: 0.25rem; transition: color 0.2s;
   }
   a.paper-title:hover { color: var(--accent); }
-  .paper-meta {
-    font-size: var(--fs-body-sm);
-    color: var(--text-secondary);
-    line-height: 1.5;
+  .paper-meta { font-size: var(--fs-body-sm); color: var(--text-secondary); line-height: 1.5; }
+
+  .all-papers-btn {
+    margin-top: 1.25rem;
+    background: none; border: none; padding: 0;
+    font-size: var(--fs-body-sm); font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--accent); cursor: pointer; transition: opacity 0.2s;
+    letter-spacing: 0.05em;
+  }
+  .all-papers-btn:hover { opacity: 0.7; }
+
+  /* ── Research modal ──────────────────────────────── */
+  .rmodal {
+    background: var(--bg);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    max-width: 720px;
+    width: 90vw;
+    max-height: 82vh;
+    padding: 0;
+    color: var(--text-primary);
+    margin: auto; /* restore UA centering overridden by global margin:0 reset */
+  }
+  .rmodal[open] {
+    display: flex;
+    flex-direction: column;
+  }
+  .rmodal::backdrop {
+    background: rgba(0, 0, 0, 0.72);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+  }
+
+  .rmodal-inner {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    border-radius: 8px;
+  }
+
+  .rmodal-header {
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 1.5rem 2rem 1.25rem;
+    border-bottom: 1px solid var(--border);
+    flex-shrink: 0; gap: 1rem;
+  }
+  .rmodal-title {
+    font-size: var(--fs-h2); font-weight: 600; color: var(--text-primary);
+  }
+  .rmodal-close {
+    background: none; border: none; color: var(--text-secondary);
+    font-size: 1rem; cursor: pointer; padding: 0.25rem 0.5rem;
+    border-radius: 2px; transition: color 0.2s; line-height: 1; flex-shrink: 0;
+  }
+  .rmodal-close:hover { color: var(--text-primary); }
+
+  .rmodal-body {
+    flex: 1;
+    min-height: 0;
+    overflow-y: auto;
+    padding: 1.5rem 2rem 2rem;
+    display: flex; flex-direction: column; gap: 2rem;
+  }
+
+  .rmodal-category { display: flex; flex-direction: column; gap: 0.75rem; }
+  .rmodal-category-heading {
+    font-size: var(--fs-body-sm); font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--accent); letter-spacing: 0.08em; text-transform: uppercase;
+    padding-bottom: 0.5rem; border-bottom: 1px solid var(--border);
+  }
+
+  .rmodal-paper-list { display: flex; flex-direction: column; gap: 0.9rem; }
+  .rmodal-paper-item {
+    padding-left: 0.75rem; border-left: 2px solid var(--border);
+  }
+  .rmodal-paper-title {
+    font-size: var(--fs-body-md); color: var(--text-primary);
+    line-height: 1.5; margin-bottom: 0.2rem; transition: color 0.2s;
+    display: block;
+  }
+  a.rmodal-paper-title:hover { color: var(--accent); }
+  .rmodal-paper-meta {
+    font-size: var(--fs-body-sm); color: var(--text-secondary); line-height: 1.5;
   }
 
   @media (max-width: 900px) {
     .research-layout { grid-template-columns: 1fr; gap: 3rem; }
+  }
+  @media (max-width: 480px) {
+    .rmodal-header { padding: 1.25rem; }
+    .rmodal-body { padding: 1.25rem; }
   }
 </style>

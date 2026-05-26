@@ -86,6 +86,37 @@ const {
       document.querySelectorAll('[data-animate]').forEach((el) => { _observer.observe(el); });
     </script>
 
+    <!-- Modal management — single event delegation for all dialogs on the page -->
+    <script is:inline>
+      (function () {
+        document.addEventListener('click', function (e) {
+          var el = e.target;
+
+          /* Open */
+          var opener = el.closest('[data-modal-open]');
+          if (opener) {
+            var id = opener.getAttribute('data-modal-open');
+            var dlg = document.getElementById(id);
+            if (dlg && !dlg.open) dlg.showModal();
+            return;
+          }
+
+          /* Close via ✕ button */
+          var closer = el.closest('[data-modal-close]');
+          if (closer) {
+            var d = closer.closest('dialog');
+            if (d) d.close();
+            return;
+          }
+
+          /* Close on backdrop (click lands directly on <dialog>) */
+          if (el.tagName === 'DIALOG') {
+            el.close();
+          }
+        });
+      })();
+    </script>
+
     <script
       is:inline
       src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"

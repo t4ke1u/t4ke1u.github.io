@@ -53,14 +53,14 @@ const loop2 = [...col2, ...col2];
     <div class="photo-col photo-col--down">
       {loop1.map((p) => (
         <div class="photo-item">
-          <Image src={p.src} alt={p.alt} widths={[400, 800]} sizes="(max-width: 900px) 160px, 220px" loading="lazy" />
+          <Image src={p.src} alt={p.alt} widths={[400, 800]} sizes="(max-width: 900px) 160px, 220px" loading="eager" />
         </div>
       ))}
     </div>
     <div class="photo-col photo-col--up">
       {loop2.map((p) => (
         <div class="photo-item">
-          <Image src={p.src} alt={p.alt} widths={[400, 800]} sizes="(max-width: 900px) 160px, 220px" loading="lazy" />
+          <Image src={p.src} alt={p.alt} widths={[400, 800]} sizes="(max-width: 900px) 160px, 220px" loading="eager" />
         </div>
       ))}
     </div>
