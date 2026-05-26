@@ -74,9 +74,14 @@ const t = ui[lang].research;
               </li>
             ))}
           </ul>
-          <button class="all-papers-btn" data-modal-open="rmodal-all-papers">
-            {t.allPapersLabel} ↗
-          </button>
+          <>
+            <button class="all-papers-btn" data-modal-open="rmodal-all-papers">
+              {t.allPapersLabel} ↗
+            </button>
+            <a class="all-papers-link" href={lang === 'en' ? '/en/research/publications' : '/research/publications'}>
+              {t.allPapersLabel} ↗
+            </a>
+          </>
         </div>
       </div>
     </div>
@@ -213,14 +218,33 @@ const t = ui[lang].research;
   a.paper-title:hover { color: var(--accent); }
   .paper-meta { font-size: var(--fs-body-sm); color: var(--text-secondary); line-height: 1.5; }
 
-  .all-papers-btn {
+  .all-papers-btn,
+  .all-papers-link {
     margin-top: 1.25rem;
-    background: none; border: none; padding: 0;
-    font-size: var(--fs-body-sm); font-family: 'SF Mono', 'Fira Code', monospace;
-    color: var(--accent); cursor: pointer; transition: opacity 0.2s;
+    appearance: none;
+    -webkit-appearance: none;
+    background: none;
+    border: none;
+    padding: 0;
+    font-size: var(--fs-body-sm);
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    color: var(--accent);
+    cursor: pointer;
+    transition: opacity 0.2s;
     letter-spacing: 0.05em;
+    text-decoration: none;
+    -webkit-tap-highlight-color: transparent;
   }
-  .all-papers-btn:hover { opacity: 0.7; }
+  .all-papers-btn:hover,
+  .all-papers-link:hover { opacity: 0.7; }
+
+  @media (min-width: 769px) {
+    .all-papers-link { display: none; }
+  }
+  @media (max-width: 768px) {
+    .all-papers-btn  { display: none; }
+    .all-papers-link { display: inline; }
+  }
 
   /* ── Research modal ──────────────────────────────── */
   .rmodal {
