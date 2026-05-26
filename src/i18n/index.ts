@@ -219,7 +219,7 @@ export const ui = {
         '私の研究は、古典コンピュータでは計算困難な組合せ最適化問題を量子コンピュータで解くことを目指しています。大学生の履修選択を<em>個人化履修最適化問題</em>として新たにNP困難問題として定式化し、初の量子ベースモデルを提案。量子・古典ハイブリッドアルゴリズムを本問題に適用し、ゲート式量子コンピュータでの応用分野のユースケースを探求しました。',
         '修士研究では、大規模問題分割と変分量子補正アルゴリズムの統合手法を開発し、ゲート式量子コンピュータで<span class="highlight">500変数</span>の求解に成功。本分野における規模の記録を達成しました。<br>本研究は、<strong>富士通研究所 量子研究所</strong>と共同で行いました。',
       ],
-      statsNums: [3, 9, 9],
+      statsNums: [2, 9, 9],
       statsLabels: ['件の論文誌', '件の国際学会', '件の国内学会'],
       ieeeLabel: 'IEEE 著者プロフィール ↗',
       awardsTitle: '受賞歴',
@@ -671,7 +671,7 @@ export const ui = {
         'My research addresses how quantum computers can solve combinatorial optimization problems that are computationally intractable for classical machines. I formalized <em>personalized course selection</em> as a new NP-hard optimization problem, proposed the first quantum-based model for it, and applied the hybrid quantum-classical algorithm <strong>pVSQA</strong> to successfully solve instances of up to <span class="highlight">500 variables</span> on a gate-model quantum computer — a scale record in the field.',
         "In my master's research, I collaborated with the <strong>Quantum Laboratory, Fujitsu Research</strong> on large-scale optimization benchmarks using subQUBO decomposition combined with variational quantum algorithms.",
       ],
-      statsNums: [3, 9, 9],
+      statsNums: [2, 9, 9],
       statsLabels: [
         'journal papers',
         'international conferences',
