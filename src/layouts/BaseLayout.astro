@@ -89,6 +89,10 @@ const {
     <!-- Modal management — single event delegation for all dialogs on the page -->
     <script is:inline>
       (function () {
+        document.addEventListener('cancel', function (e) {
+          if (e.target.tagName === 'DIALOG') document.body.style.overflow = '';
+        }, true);
+
         document.addEventListener('click', function (e) {
           var el = e.target;
 
@@ -97,7 +101,10 @@ const {
           if (opener) {
             var id = opener.getAttribute('data-modal-open');
             var dlg = document.getElementById(id);
-            if (dlg && !dlg.open) dlg.showModal();
+            if (dlg && !dlg.open) {
+              dlg.showModal();
+              document.body.style.overflow = 'hidden';
+            }
             return;
           }
 
@@ -105,13 +112,14 @@ const {
           var closer = el.closest('[data-modal-close]');
           if (closer) {
             var d = closer.closest('dialog');
-            if (d) d.close();
+            if (d) { d.close(); document.body.style.overflow = ''; }
             return;
           }
 
           /* Close on backdrop (click lands directly on <dialog>) */
           if (el.tagName === 'DIALOG') {
             el.close();
+            document.body.style.overflow = '';
           }
         });
       })();

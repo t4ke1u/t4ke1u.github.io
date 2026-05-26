@@ -146,7 +146,6 @@ export const ui = {
           features: [
             '学生の趣向・登校日数・空きコマ・単位数を同時に考慮した数理モデルを独自開発',
             '量子・古典ハイブリッドアルゴリズム pVSQA を履修最適化に初適用',
-            'ゲート式量子コンピュータで500変数の大規模インスタンスの求解に成功',
           ],
         },
         {
@@ -475,7 +474,6 @@ export const ui = {
           features: [
             'Original mathematical model accounting for preferences, commute days, free periods, and credit requirements simultaneously',
             'First application of the quantum-classical hybrid algorithm pVSQA to course selection optimization',
-            'Successfully solved 500-variable large-scale instances on a gate-model quantum computer',
           ],
         },
         {
