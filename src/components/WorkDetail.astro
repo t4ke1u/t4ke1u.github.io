@@ -49,7 +49,7 @@ const backLabel = lang === 'ja' ? '← Works' : '← Works';
         </div>
       )}
       {num === '03' && (
-        <div class="detail-visual">
+        <div class="detail-visual white-bg">
           <Image
             src={imgWorks03}
             alt="LLM × 量子最適化 アーキテクチャ図"
@@ -156,6 +156,12 @@ const backLabel = lang === 'ja' ? '← Works' : '← Works';
     display: block;
     border-radius: 6px;
     border: 1px solid var(--border);
+  }
+
+  .detail-visual.white-bg {
+    background-color: #ffffff;
+    border-radius: 6px;
+    padding: 1rem;
   }
 
   /* Gallery (Works 05) */
